@@ -37,7 +37,7 @@ public class Enemy : Shakeable
     }
 
 
-    void Damage(float amt)
+    public void Damage(float amt)
     {
 
         if (health > 0)
@@ -47,7 +47,7 @@ public class Enemy : Shakeable
         }
     }
 
-    bool shouldDelete = false;
+    private bool shouldDelete = false;
 
     // Update is called once per frame
     void Update()
