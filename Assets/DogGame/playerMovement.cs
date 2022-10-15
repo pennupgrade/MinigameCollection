@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovementScript : MonoBehaviour
+public class playerMovement : MonoBehaviour
 {
     public float movementSpeed;
     public Rigidbody2D rb;
@@ -24,14 +24,14 @@ public class playerMovementScript : MonoBehaviour
             Jump();
         }
 
-        if (Mathf.Abs(mx) > 0.05f)
-        {
-            anim.SetBool("isRunning", true);
-        }
-        else
-        {
-            anim.SetBool("isRunning", false);
-        }
+        //if (Mathf.Abs(mx) > 0.05f)
+        //{
+        //    anim.SetBool("isRunning", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isRunning", false);
+        //}
 
         if (mx > 0f)
         {
@@ -44,15 +44,15 @@ public class playerMovementScript : MonoBehaviour
             isFacingRight = false;
         }
 
-        anim.SetBool("isGrounded", IsGrounded());
+        //anim.SetBool("isGrounded", IsGrounded());
 
-        if (Input.GetKeyDown(restart) && canRestart == true)
-        {
-            Destroy(gameObject);
-            LevelManager.instance.Respawn();
-            LevelManager.instance.Restart();
-            canRestart = false;
-        }
+        //if (Input.GetKeyDown(restart) && canRestart == true)
+        //{
+        //    Destroy(gameObject);
+        //    LevelManager.instance.Respawn();
+        //    LevelManager.instance.Restart();
+        //    canRestart = false;
+        //}
     }
 
     private void FixedUpdate()
@@ -67,7 +67,7 @@ public class playerMovementScript : MonoBehaviour
 
         rb.velocity = movement;
 
-        jumpAudio.PlayOneShot(jumpAudio.clip, volume);
+        //jumpAudio.PlayOneShot(jumpAudio.clip, volume);
 
     }
 
