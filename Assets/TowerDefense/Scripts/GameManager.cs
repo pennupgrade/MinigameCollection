@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
     private static GameManager instance;
     public static GameManager Instance => GameManager.instance;
-
-
 
     private Shakeable cameraShake;
 
@@ -38,7 +37,8 @@ public class GameManager : MonoBehaviour
     public void Die()
     {
         // placeholder just quit the editor
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
+        SceneManager.LoadScene("EndUI");
     }
 
     public void SetHealth(int h)
