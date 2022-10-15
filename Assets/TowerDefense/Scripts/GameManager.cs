@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => GameManager.instance;
 
 
+
+    private Shakeable cameraShake;
+
     [SerializeField]
     private int health;
 
@@ -40,6 +43,13 @@ public class GameManager : MonoBehaviour
 
     public void SetHealth(int h)
     {
+
+        // if you lose health, shake the camera
+        if (h < health)
+        {
+            ShakeCamera();
+        }
+
         health = h;
         healthText.text = h.ToString();
 
@@ -54,6 +64,11 @@ public class GameManager : MonoBehaviour
     {
         money = h;
         moneyText.text = h.ToString();
+    }
+
+    public void ShakeCamera()
+    {
+        cameraShake.BeginShake();
     }
 
     
@@ -74,6 +89,7 @@ public class GameManager : MonoBehaviour
     {
         healthText.text = health.ToString();
         moneyText.text = money.ToString();
+        cameraShake = Camera.main.GetComponent<Shakeable>();
     }  
 
     // Update is called once per frame

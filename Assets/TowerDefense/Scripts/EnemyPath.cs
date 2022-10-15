@@ -10,8 +10,6 @@ public class EnemyPath : MonoBehaviour
 
     private List<Transform> path;
 
-
-
     // PLACEHOLDER JUST GOING TO SPAWN EVERY X SECONDS
     private float nextSpawnTime = 0.0f;
     public float spawnRate = 5f; // # of seconds b/n spawns
@@ -19,7 +17,7 @@ public class EnemyPath : MonoBehaviour
     void SpawnEnemy(int index)
     {
         GameObject newEnemy = Instantiate(possibleEnemies[index], path[0].position, Quaternion.identity);
-        newEnemy.GetComponent<Enemy>().waypoints = path;
+        newEnemy.GetComponent<Enemy>().Waypoints = path;
     }
 
     // Start is called before the first frame update
