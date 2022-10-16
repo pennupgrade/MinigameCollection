@@ -26,7 +26,8 @@ public class TowerSquare : MonoBehaviour
             {
                 if (!active) {
                     Instantiate(tower, transform.position, Quaternion.identity);
-                    //GameManager.Instance.Money -= 10; // placeholder
+                    
+                    GameManager.Instance.Money -= 10; // placeholder price
                     active = true;
                     GetComponent<Renderer>().material.color = new Color(1,1,1,0.0f);
                 }

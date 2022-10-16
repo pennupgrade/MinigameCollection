@@ -34,6 +34,7 @@ public class Enemy : Shakeable
     void Start()
     {
         health = maxHealth;
+        GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
     }
 
 

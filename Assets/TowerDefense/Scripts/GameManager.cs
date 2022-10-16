@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public int Money
     {
-        get { return Money; }
+        get { return money; }
         set { SetMoney(value); }
     }
 
