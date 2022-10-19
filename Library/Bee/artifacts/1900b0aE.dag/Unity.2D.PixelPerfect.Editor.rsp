@@ -346,9 +346,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Editor/CinemachinePixelPerfectEditor.cs"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Editor/ObjectMenuCreation/GameObjectCreation.cs"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Editor/PixelPerfectCameraEditor.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Editor/CinemachinePixelPerfectEditor.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Editor/Converter/U2DToURPPixelPerfectConverter.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Editor/ObjectMenuCreation/GameObjectCreation.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Editor/PixelPerfectCameraEditor.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Editor/Tests/PixelPerfectCameraEditorTests.cs"
 -langversion:9.0
 
 /deterministic

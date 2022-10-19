@@ -341,10 +341,10 @@
 -r:"C:/Users/aaron/Documents/GitHub/MinigameCollection/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Runtime/AssemblyInfo.cs"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Runtime/CinemachinePixelPerfect.cs"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Runtime/PixelPerfectCamera.cs"
-"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1/Runtime/PixelPerfectCameraInternal.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Runtime/AssemblyInfo.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Runtime/CinemachinePixelPerfect.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Runtime/PixelPerfectCamera.cs"
+"Library/PackageCache/com.unity.2d.pixel-perfect@5.0.2/Runtime/PixelPerfectCameraInternal.cs"
 -langversion:9.0
 
 /deterministic

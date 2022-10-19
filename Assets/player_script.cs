@@ -9,6 +9,7 @@ public class player_script : MonoBehaviour
 {
 
     Rigidbody2D body;
+    BoxCollider2D boxc;
     float gravity = 0.1f;
     Vector3 velocity;
 
@@ -16,6 +17,7 @@ public class player_script : MonoBehaviour
     void Start()
     {  
        body = GetComponent<Rigidbody2D>();
+       boxc = GetComponent<BoxCollider2D>();
     }
     
     float holdTime;
