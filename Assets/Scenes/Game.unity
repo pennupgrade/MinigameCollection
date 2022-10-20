@@ -650,7 +650,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559241595}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
@@ -730,8 +730,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1292, y: 726.99}
+  m_AnchoredPosition: {x: 126.24997, y: -71.05002}
+  m_SizeDelta: {x: 1039.5, y: 584.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633860952
 MonoBehaviour:
@@ -1140,6 +1140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bbd054586cf3e499d5018829465b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: 0.2
+  deathVelocityY: 3
+  flyFactor: 2
+  rotation: 2
+  timeToMaxVelocity: 1
 --- !u!1 &1088592383
 GameObject:
   m_ObjectHideFlags: 0

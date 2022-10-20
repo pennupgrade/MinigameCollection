@@ -10,8 +10,13 @@ public class player_script : MonoBehaviour
 
     Rigidbody2D body;
     BoxCollider2D boxc;
-    float gravity = 0.1f;
+    public float gravity;
     Vector3 velocity;
+
+    public float deathVelocityY;
+    public float flyFactor;
+
+    public float rotation;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +35,9 @@ public class player_script : MonoBehaviour
         if (Manager.gameOver)
         {
             if (!justDied)
-                velocity = new Vector3(0, 30 * Time.deltaTime, 0);
+                velocity = new Vector3(0, deathVelocityY * Time.deltaTime, 0);
             justDied = true;
-            transform.Rotate(0, 0, 2);
+            transform.Rotate(0, 0, rotation);
             var vcopy = velocity;
             vcopy.x = 0.02f;
             velocity = vcopy;
@@ -43,28 +48,37 @@ public class player_script : MonoBehaviour
 
     }
 
+    float saveY;
+
+    public float timeToMaxVelocity;
+
     void move()
     {
+
+        var vcopy = velocity;
+
         if (Input.GetKey(KeyCode.W) && !Manager.gameOver)
         {
             holdTime += Time.deltaTime;
-            velocity = velocity + new Vector3(0, Interpolation.smooth.Apply(0, 1.01f * gravity, Math.Max(1, holdTime / 4f)), 0);
+
+            var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
+
+            vcopy.y = addV;
+
         }
         else
         {
             holdTime = 0;
+            saveY = vcopy.y;
+            vcopy.y -= gravity * Time.deltaTime;
         }
-        velocity = velocity + new Vector3(0, -gravity * Time.deltaTime, 0);
-        var vcopy = velocity;
-        var vymax = 0.03f;
-        if (velocity.y > vymax)
-            vcopy.y = vymax;
+
+
         velocity = vcopy;
 
         var copy = transform.position;
 
         copy = copy + velocity;
-
 
         transform.position = copy;
     }
