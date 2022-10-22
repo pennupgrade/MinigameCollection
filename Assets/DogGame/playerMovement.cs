@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    
     public float movementSpeed;
     public Rigidbody2D rb;
 
-    public float jumpForce = 20f;
+    public float jumpForce = 30f;
     public Transform feet;
     public LayerMask groundLayers;
 
@@ -82,5 +83,12 @@ public class playerMovement : MonoBehaviour
         return false;
 
     }
+
+   //public void OnTriggerEnter2D(Collider2D collider)
+   //{
+   //     Debug.Log("Test");
+  // }
+
+    
 
 }
