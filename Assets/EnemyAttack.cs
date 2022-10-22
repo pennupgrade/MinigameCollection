@@ -11,15 +11,15 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Gameobject.FindGameObjectWithTag("Player").activeHierarchy) {
+        /* if (Gameobject.FindGameObjectWithTag("Player").activeHierarchy) {
             playerTransform = Gameobject.FindGameObjectWithTag("Player").transform;
-        }
+        } */
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)) {
+        /* if(Input.GetMouseButtonDown(0)) {
             Attack();
         }
         /*
@@ -34,7 +34,7 @@ public class EnemyAttack : MonoBehaviour
         }*/
     }
 
-    private void Attack() {
+ /*   private void Attack() {
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer);
         if (hitEnemies != null) {
@@ -45,6 +45,6 @@ public class EnemyAttack : MonoBehaviour
         }
         /*
         attacking = true;
-        attackArea.SetActive(attacking);*/
-    }
+        attackArea.SetActive(attacking);
+     */
 }
