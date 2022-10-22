@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    private int stage;
+    public int stage;
     public float hp;
     public float DistanceToPlayer;
     public GameObject player;
@@ -16,7 +16,6 @@ public class Boss : MonoBehaviour
         LaserAttack1,
         LaserAttack2,
         MissileAttack,
-        BezierMissileAttack,
         UpSwept,
         Dash,
         Dead
@@ -28,12 +27,11 @@ public class Boss : MonoBehaviour
         { BossActionType.LaserAttack1, 2.5f},
         {BossActionType.LaserAttack2, 2.5f },
         {BossActionType.MissileAttack, 2.5f },
-        {BossActionType.BezierMissileAttack, 2.5f },
         {BossActionType.UpSwept, 2.5f },
         {BossActionType.Dash, 2.5f }
     };
 
-    private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1" };
+    private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1", "Dash" , "UpSwept" };
 
 
     IEnumerator processAttack(int iter, string[] stage, int totalIter)
@@ -77,14 +75,11 @@ public class Boss : MonoBehaviour
             case BossActionType.MissileAttack:
                 bossAtk.missileAttack(stage, BossActionTime[currentAction]);
                 break;
-            case BossActionType.BezierMissileAttack:
-
-                break;
             case BossActionType.Dash:
-
+                bossAtk.dash(stage);
                 break;
             case BossActionType.UpSwept:
-
+                bossAtk.upswept();
                 break;
         }
         return BossActionTime[currentAction];
