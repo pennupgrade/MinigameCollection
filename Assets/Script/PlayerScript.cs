@@ -37,6 +37,16 @@ public class PlayerScript : MonoBehaviour
         health = newHealth;
     }
 
+    void AddHealth(float amount)
+    {
+        health += amount;
+    }
+
+    public void AddDamage(float amount)
+    {
+        health = health > amount ? health - amount : 0;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -6,8 +6,9 @@ public class Boss : MonoBehaviour
 {
     private int stage;
     public float hp;
-    private float DistanceToPlayer;
+    public float DistanceToPlayer;
     public GameObject player;
+    private BossAttack bossAtk;
     //so for this Boss the scripted behavior will be 
     // Start is called before the first frame update
     public enum BossActionType {
@@ -21,15 +22,87 @@ public class Boss : MonoBehaviour
         Dead
     }
 
+    public Dictionary<BossActionType, float> BossActionTime = new Dictionary<BossActionType, float>()
+    {
+        { BossActionType.Idle, 2.0f},
+        { BossActionType.LaserAttack1, 2.5f},
+        {BossActionType.LaserAttack2, 2.5f },
+        {BossActionType.MissileAttack, 2.5f },
+        {BossActionType.BezierMissileAttack, 2.5f },
+        {BossActionType.UpSwept, 2.5f },
+        {BossActionType.Dash, 2.5f }
+    };
+
+    private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1" };
+
+
+    IEnumerator processAttack(int iter, string[] stage, int totalIter)
+    {
+        //retrieve and process the enum value
+        print("processAttack" + iter + " " + totalIter);
+        BossActionType currentActionType = (BossActionType)System.Enum.Parse(typeof(BossActionType), stage[iter]);
+        float waitTime = ProcessBossAction(currentActionType);
+
+
+
+        yield return new WaitForSeconds(waitTime);
+        if (iter + 1 < totalIter)
+        {
+            yield return processAttack(iter + 1, stage, totalIter);
+        }
+        else
+        {
+            yield return null;
+        }
+    }
+
+    float ProcessBossAction(BossActionType currentAction)
+    {
+        if (bossAtk == null)//just in case
+        {
+            print("BossAtk is null cannot proceed");
+        } 
+        switch (currentAction)
+        {
+            case BossActionType.Idle:
+                //do idle animation? todo
+                break;
+            case BossActionType.LaserAttack1:
+                //process one laser attack
+                bossAtk.laserAttack1(stage, this.gameObject.transform.position, player.transform.position, BossActionTime[currentAction]);
+                break;
+            case BossActionType.LaserAttack2:
+                bossAtk.laserAttack2(stage, player.transform.position, BossActionTime[currentAction]);
+                break;
+            case BossActionType.MissileAttack:
+                bossAtk.missileAttack(stage, BossActionTime[currentAction]);
+                break;
+            case BossActionType.BezierMissileAttack:
+
+                break;
+            case BossActionType.Dash:
+
+                break;
+            case BossActionType.UpSwept:
+
+                break;
+        }
+        return BossActionTime[currentAction];
+    }
+
     void Start()
     {
-        stage = 0;
+        stage = 1;
         player = GameObject.FindWithTag("Player");
+        bossAtk = gameObject.GetComponent<BossAttack>();
+        IEnumerator atk = processAttack(0, BossActionStage1, BossActionStage1.Length);
+        StartCoroutine(atk);
     }
 
     // Update is called once per frame
     void Update()
     {
+        DistanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
         checkStageChange();
         switch (stage) {
             case 0:
