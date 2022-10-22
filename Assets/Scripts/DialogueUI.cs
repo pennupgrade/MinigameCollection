@@ -11,6 +11,5 @@ public class DialogueUI : MonoBehaviour
     private void Start()
     {
         GetComponent<TypewriterEffect>().Run(textToType: "Broccoli: This is a bit of text!\nHello.", textLabel);
-        GetComponent<TypewriterEffect>().Run(textToType: "Carrot: This is a bit of text!\nHello.", textLabel);
     }
 }
