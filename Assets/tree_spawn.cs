@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class tree_spawn : MonoBehaviour
@@ -9,6 +8,12 @@ public class tree_spawn : MonoBehaviour
 
     public GameObject obstacle;
     private float timer;
+
+    public float yPos;
+
+    public float yOffset;
+
+    public float spawnLow, spawnHigh;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +32,13 @@ public class tree_spawn : MonoBehaviour
             resetT();
             timer = 0;
             var s = Instantiate(obstacle);
-            s.transform.position = new Vector3(11, -3, 0);
+            s.transform.position = new Vector3(11, yPos + yOffset * UnityEngine.Random.Range(-1, 1), 0);
 
         }
     }
 
     public void resetT()
     {
-        spawnT = UnityEngine.Random.Range(1,6);
+        spawnT = UnityEngine.Random.Range(spawnLow, spawnHigh);
     }
 }

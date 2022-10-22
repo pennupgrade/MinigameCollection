@@ -10,6 +10,7 @@ using TMPro;
 public class Manager : MonoBehaviour
 {
     public TMP_Text scoreT;
+    public TMP_Text scoreUnder;
     public TMP_Text overT;
 
     public static bool gameOver = false;
@@ -38,7 +39,7 @@ public class Manager : MonoBehaviour
         
             overT.enabled = false;
             score += Time.deltaTime;
-            scoreT.text = "Score: " + (int)(score * 10);
+            scoreT.text = "" + (int)(score * 10);
             velocityX += Time.deltaTime * increaseSpeed;
         }
         else
@@ -49,6 +50,7 @@ public class Manager : MonoBehaviour
                 justDied = true;
             }
             scoreT.enabled = false;
+            scoreUnder.enabled = false;
             overT.enabled = true;
 
             var copy = overT.transform.eulerAngles;
