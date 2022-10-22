@@ -28,6 +28,8 @@ public class Manager : MonoBehaviour
     float decreaseSpeed;
     bool justDied;
 
+    public float logScale;
+
     float timer;
 
     float rotation = 360f * 3;
@@ -40,7 +42,9 @@ public class Manager : MonoBehaviour
             overT.enabled = false;
             score += Time.deltaTime;
             scoreT.text = "" + (int)(score * 10);
-            velocityX += Time.deltaTime * increaseSpeed;
+            //velocityX += Time.deltaTime * increaseSpeed;
+
+            velocityX = increaseSpeed * Mathf.Log(1 + score, logScale);
         }
         else
         {

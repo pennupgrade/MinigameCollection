@@ -52,26 +52,44 @@ public class player_script : MonoBehaviour
 
     public float timeToMaxVelocity;
 
+    public float down;
+
     void move()
     {
 
         var vcopy = velocity;
 
-        if (Input.GetKey(KeyCode.W) && !Manager.gameOver)
+        if (!Manager.gameOver)
         {
-            holdTime += Time.deltaTime;
 
-            var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
+            if (Input.GetKey(KeyCode.W)) 
+            {
+                holdTime += Time.deltaTime;
+                var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
+                vcopy.y = addV; 
+            }
 
-            vcopy.y = addV;
+            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+            {
+                vcopy.y -= down;
+                //holdTime = 0;
+            }
+
+            if (!Input.GetKey(KeyCode.W))
+            {
+                holdTime = 0;
+                vcopy.y -= gravity * Time.deltaTime;
+                saveY = vcopy.y;
+            }
 
         }
         else
         {
-            holdTime = 0;
-            saveY = vcopy.y;
             vcopy.y -= gravity * Time.deltaTime;
+            saveY = vcopy.y;
         }
+
+        
 
 
         velocity = vcopy;
