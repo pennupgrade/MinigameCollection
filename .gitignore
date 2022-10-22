@@ -4,8 +4,6 @@
 #
 
 .gitignore
-/hooks
-/lfs
 
 /[Ll]ibrary/
 /[Tt]emp/
