@@ -9,7 +9,11 @@ public class BossAttack : MonoBehaviour
 
     private Vector3 positionAtLeft;
     private Vector3 positionAtRight;
+
+    //public float dashForce = 100000;
+    //private float gravity = 25;
     // Start is called before the first frame update
+    public Vector3[] pos = new Vector3[]{new Vector3(-6f, -0.98f, 0) , new Vector3(6, -0.98f, 0), new Vector3(0, -0.98f, 0)};
     void Start()
     {
         
@@ -34,41 +38,44 @@ public class BossAttack : MonoBehaviour
         }
         //TODO position and degree
         float distance = Vector3.Distance(startPos, playerPos);
-        Vector3 targetDir = playerAtRight ? playerPos - startPos : startPos - playerPos;
-        Vector3 position = playerAtRight ? (playerPos - startPos)/2 + startPos:  (startPos - playerPos)/2 + playerPos;
+        Vector3 targetDir = playerPos - startPos;
+        //targetDir.y = startPos.y;
+        Vector3 position = startPos - distance*2*Vector3.Normalize(targetDir);
+        position.y = startPos.y;
         GameObject laser = Instantiate(laserPrefab, position, Quaternion.identity);
         float angle = Vector3.Angle(targetDir, new Vector3(1.0f, 0.0f, 0.0f));
-        laser.transform.Rotate(0.0f, 0.0f, angle, Space.World);
-        laser.transform.localScale += new Vector3(distance - 1, 0f, 0f);
+        //laser.transform.Rotate(0.0f, 0.0f, angle, Space.World);
+        laser.transform.RotateAround(startPos, new Vector3(0, 0, 1), angle);
+        laser.transform.localScale += new Vector3(distance*4 - 1, 0f, 0f);
         Laser laserScript = laser.GetComponent<Laser>();
         laserScript.rotatePos = this.transform.position;
         laserScript.sweepStyle = true;
-        laserScript.Angle = degree;
+        laserScript.Angle = playerPos.y > startPos.y  ? degree : -degree;
+        if (playerAtRight) {
+            laserScript.Angle = -laserScript.Angle;
+        }
         laserScript.destroyTime = time;
         Destroy(laser, time);
         /*laser.Angle = Vector3.Angle(targetDir, new Vector3(1.0f, 0.0f, 0.0f));
-        laser.transform.Rotate(0.0f, 0.0f, angle, Space.World);*///this rotation should be done in laser.cs with update()
+        laser.transform.Rotate(0.0f, 0.0f, angle, Space.World);*/
+        //this rotation should be done in laser.cs with update()
     }
 
     public void laserAttack2(int stage, Vector3 playerPos, float time) {//horizontal/perpenticular
         //initialize a laser prefab
         //1,2,3 for now
         Vector3 center = new Vector3(0.0f, 0.0f, 0.0f);
-        var trans1 = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0f);
+        
         if (stage == 1) {
-            singleLaserAttack(true, center, playerPos + trans1, time);
+            singleLaserAttack(true, center, playerPos, time);
         } else if (stage == 2) {
-            singleLaserAttack(true, center, playerPos + trans1, time);
-            trans1 = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0f);
-            singleLaserAttack(false, center, playerPos + trans1, time);
+            singleLaserAttack(true, center, playerPos, time);
+            singleLaserAttack(false, center, playerPos, time);
         } else if (stage == 3) {
-            singleLaserAttack(true, center, playerPos + trans1, time);
-            trans1 = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0f);
-            singleLaserAttack(false, center, playerPos + trans1, time);
-            trans1 = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0f);
-            singleLaserAttack(true, center, playerPos + trans1, time);
-            trans1 = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0f);
-            singleLaserAttack(false, center, playerPos + trans1, time);
+            singleLaserAttack(true, center, playerPos, time);
+            singleLaserAttack(false, center, playerPos, time);
+            singleLaserAttack(true, center, playerPos, time);
+            singleLaserAttack(false, center, playerPos, time);
         }
     }
 
@@ -88,6 +95,15 @@ public class BossAttack : MonoBehaviour
 
         //laser position
         laser.transform.position += trans;
+        var trans1 = new Vector3(0, 0, 0);
+        //do some randomization
+        if (horizontal) {
+            trans1.y += Random.Range(-1.0f, 1.0f);
+        } else {
+            trans1.x += Random.Range(-1.0f, 1.0f);
+        }
+        laser.transform.position = new Vector3(Mathf.Round(laser.transform.position.x + trans1.x),Mathf.Round(laser.transform.position.y + trans1.y),Mathf.Round(laser.transform.position.z + trans1.z) );
+
     }
 
     public void missileAttack(int stage, float time) {
@@ -112,20 +128,30 @@ public class BossAttack : MonoBehaviour
         GameObject missile = Instantiate(missilePrefab, this.transform.position, Quaternion.identity);
     }
 
-    void bezierMissileAttack(int stage) {
-        //initialize a bezier curve missile 
-
-    }
-
-    void upswept() {
+    public void upswept() {
         //do animation of upswept
 
         //like laser attack we generate collider to see if sword collider with player
+        //GameObject sword = Instantiate()
 
 
     }
 
-    void dash() {
+    IEnumerator lerpPosition(Vector3 targetPos, float duration) {
+        float time = 0;
+        Vector3 startPosition = transform.position;
+        targetPos.y = startPosition.y;
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPos, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
+    }
 
+    public void dash(int stage) {
+        Vector3 targetPos = pos[stage-1];
+        StartCoroutine(lerpPosition(targetPos, 1.5f));
     }
 }
