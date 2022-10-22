@@ -5,8 +5,11 @@ using UnityEngine;
 public class DogVision : MonoBehaviour {
     Vector3 vis;
     private void Update() {
+        // decreases vision rate
         if (transform.localScale.x > 0) {
             transform.localScale -= new Vector3((float)0.0005, (float)0.0005, (float)0.0005);
         }
     }
+
+
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int hitsNeeded = 3;
-    public int hitsTaken;
+    public int health = 3;
     public int transitionSpeed = 40;
     //public GameObject leftCollPoint;
     //public GameObject rightCollPoint;
@@ -25,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            hitsTaken += 1;
+            health -= 1;
             Vector2 newPos = new Vector2(playerPos.position.x+1, playerPos.position.y+1);
             playerPos.position = Vector2.Lerp(playerPos.position, newPos, Time.deltaTime * transitionSpeed);
        
@@ -46,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
             health.SetTrigger("Health3");
         }*/
 
-        if (hitsTaken >= hitsNeeded)
+        if (health <= 0)
         {
             //anim.SetTrigger("Dead");
             SelfDestroy();
@@ -56,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
     public void SelfDestroy()
     {
         playerPos.position = respawnPoint.position;
+        health = 3;
     }
 
     /*public void playDeathSound()
