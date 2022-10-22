@@ -10,18 +10,23 @@ public class Laser : MonoBehaviour
     public float destroyTime;
     public bool sweepStyle;
     // Start is called before the first frame update
+    void Awake() {
+        sweepStyle = false;
+    }
     void Start()
     {
-        sweepStyle = false;
-        Angle = 0f;
-        destroyTime = 0f;
-        rotatePos = this.gameObject.transform.position;
+        //Angle = 0f;
+        //if (!destroyTime) destroyTime = 1f;
+        //rotatePos = this.gameObject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.RotateAround(rotatePos, new Vector3(0, 0, 1), (Angle / destroyTime) * Time.deltaTime);
+        //print("rotateWorking");
+        if (sweepStyle) {
+            transform.RotateAround(rotatePos, new Vector3(0, 0, 1), (Angle / destroyTime) * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
