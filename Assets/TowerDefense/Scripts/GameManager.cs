@@ -10,10 +10,22 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => GameManager.instance;
 
+    public Vector3 initialCameraPos;
+    private Vector3 targetCameraPos;
+
     private Shakeable cameraShake;
 
     [SerializeField]
     private int health;
+
+
+    private int enemiesKilled = 0;
+
+    public int Killed
+    {
+        get { return enemiesKilled; }
+        set { SetKilled(value);  }
+    }
 
     public int Health
     {
@@ -32,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     public Text healthText;
     public Text moneyText;
+    public Text killedText;
+    public GameObject towerUpgradePanel;
 
 
     public void Die()
@@ -60,10 +74,28 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void OpenTowerUpgradePanel(GameObject tower)
+    {
+        towerUpgradePanel.SetActive(true);
+        towerUpgradePanel.GetComponent<TowerUpgrade>().Open(tower.GetComponent<Tower>());
+        targetCameraPos = tower.transform.position + new Vector3(2,5,-5);
+    }
+
+    public void ReturnCameraToInitialPosition()
+    {
+        targetCameraPos = initialCameraPos;
+    }
+
     public void SetMoney(int h)
     {
         money = h;
         moneyText.text = h.ToString();
+    }
+
+    public void SetKilled(int h)
+    {
+        enemiesKilled = h;
+        killedText.text = h.ToString();
     }
 
     public void ShakeCamera()
@@ -71,7 +103,6 @@ public class GameManager : MonoBehaviour
         cameraShake.BeginShake();
     }
 
-    
     private void Awake()
     {
         if (GameManager.instance != null && GameManager.instance != this)
@@ -90,11 +121,13 @@ public class GameManager : MonoBehaviour
         healthText.text = health.ToString();
         moneyText.text = money.ToString();
         cameraShake = Camera.main.GetComponent<Shakeable>();
+        initialCameraPos = Camera.main.transform.position;
+        targetCameraPos = initialCameraPos;
     }  
 
     // Update is called once per frame
     void Update()
     {
-        
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetCameraPos, 0.03f); 
     }
 }

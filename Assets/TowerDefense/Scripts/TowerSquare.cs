@@ -9,12 +9,25 @@ public class TowerSquare : MonoBehaviour
 
     private bool mousedOver;
 
-    public GameObject tower;
+    public GameObject towerPrefab;
+
+    private GameObject currentTower;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color(1,1,1,0.3f);
+        GetComponent<Renderer>().material.color = new Color(1,1,1,0.5f);
+    }
+
+    void PurchaseTower() {
+
+        if (GameManager.Instance.Money >= 10) {
+            currentTower = Instantiate(towerPrefab, transform.position + Vector3.up, Quaternion.identity); 
+            GameManager.Instance.Money -= 10; // placeholder price
+            active = true;
+            //GetComponent<Renderer>().enabled = false;
+            //GetComponent<Renderer>().material.color = new Color(0,0,0,0.0f);
+        }
     }
 
     // Update is called once per frame
@@ -22,29 +35,33 @@ public class TowerSquare : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //Debug.Log("faoewjfwe");
             if(mousedOver)
             {
-                if (!active) {
-                    Instantiate(tower, transform.position, Quaternion.identity);
-                    
-                    GameManager.Instance.Money -= 10; // placeholder price
-                    active = true;
-                    GetComponent<Renderer>().material.color = new Color(1,1,1,0.0f);
+                Debug.Log("moused over click");
+                if (active)
+                {
+                    Debug.Log("Active click");
+                    GameManager.Instance.OpenTowerUpgradePanel(currentTower);
+                }
+                else
+                {
+                    PurchaseTower();
                 }
             }
         }
     }
+    
     void OnMouseOver()
     {
         mousedOver = true;
-        // hacky color stuff for now
-        if (!active) GetComponent<Renderer>().material.color = new Color(1,1,1,0.3f);
+        GetComponent<Renderer>().material.color = new Color(1,1,1,0.3f);
     }
 
     void OnMouseExit()
     {
         mousedOver = false;
-        // hacky color stuff for now
-        if (!active) GetComponent<Renderer>().material.color = new Color(1,1,1,0.5f);
+        GetComponent<Renderer>().material.color = active? new Color(1,1,1,0.5f) : new Color(1,1,1,0.0f);
+        
     }
 }

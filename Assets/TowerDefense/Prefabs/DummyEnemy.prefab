@@ -102,6 +102,7 @@ MonoBehaviour:
   _shakeTime: 0.2
   _shakeDistance: 0.1
   _delayBetweenShakes: 0
+  reward: 1
   fadeAwayTime: 0.5
   moveSpeed: 5
   maxHealth: 100

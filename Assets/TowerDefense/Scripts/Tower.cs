@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Shakeable
 {
+    
+    [Header("Tower Settings")]
     private float nextShootTime = 0f;
     public float shootDelay = 1f;
     public float damage = 50f;
+    
+    public int speedCost = 5;
+    public int damageCost = 5;
+
+
+    private LineRenderer line;
 
     // Declare and initialize a new List of GameObjects called currentCollisions.
     private List<GameObject> currentCollisions;
@@ -29,6 +37,14 @@ public class Tower : MonoBehaviour
     {
         currentCollisions = new List <GameObject> ();
         GetComponent<Renderer>().material.color = Color.green;
+        line = GetComponent<LineRenderer>();
+
+        // set width of the renderer
+        line.startWidth = 0.05f;
+        line.endWidth = 0.05f;
+        
+        line.SetPosition(0, transform.position);
+        line.enabled = false;
     }
 
     void AttemptShootEnemy()
@@ -48,7 +64,14 @@ public class Tower : MonoBehaviour
                     
                     //enemy shoot animation here
                     GetComponent<Renderer>().material.color = Color.red;
+            
+                    // set the position
+                    line.SetPosition(1, currentCollisions[i].transform.position);
+                    line.enabled = true;
+
                     e.Damage(damage);
+                    BeginShake();
+                    
                     return;
                 }
             }
@@ -65,6 +88,7 @@ public class Tower : MonoBehaviour
         }
         else if (Time.time > nextShootTime - 0.5f) { // super placeholder colors
             GetComponent<Renderer>().material.color = Color.green;
+            line.enabled = false;
         }
     }
 }

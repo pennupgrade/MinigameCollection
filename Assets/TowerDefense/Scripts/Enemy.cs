@@ -7,8 +7,12 @@ public class Enemy : Shakeable
 
     [Header("Enemy Settings")]
 
+    [SerializeField]
+    private int reward = 1;
+
+    [SerializeField]
     [Range(0f, 2f)]
-    public float fadeAwayTime = 0.5f;
+    private float fadeAwayTime = 0.5f;
 
     [SerializeField]
     private float moveSpeed;
@@ -17,6 +21,8 @@ public class Enemy : Shakeable
     private float maxHealth;
 
     private float health;
+
+    private Animator animator;
 
     
 
@@ -35,6 +41,8 @@ public class Enemy : Shakeable
     {
         health = maxHealth;
         GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        animator = GetComponent<Animator>();
+        ChangeAnimationDir();
     }
 
 
@@ -50,13 +58,47 @@ public class Enemy : Shakeable
 
     private bool shouldDelete = false;
 
+
+    void ChangeAnimationDir()
+    {
+        Vector3 dir = Vector3.Normalize(waypoints[waypointIndex].transform.position - transform.position);
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z))
+        {
+            if (dir.x > 0)
+            {
+                animator.SetInteger("Dir",0);
+                Debug.Log("Right");
+            }
+            else
+            {
+                animator.SetInteger("Dir",2);
+                Debug.Log("Left");
+            }
+        }
+        else
+        {
+            if (dir.z > 0)
+            {
+                animator.SetInteger("Dir",1);
+                Debug.Log("Up");
+            }
+            else
+            {
+                animator.SetInteger("Dir",3);
+                Debug.Log("Down");
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         // if all the death animations and stuff have completed, clean up the guy
         if (shouldDelete == true)
         {
+            GameManager.Instance.Money += reward;
             Destroy(this.gameObject);
+            GameManager.Instance.Killed += 1;
         }
         // == kill enemy when health depleted
         else if (health <= 0)
@@ -74,7 +116,6 @@ public class Enemy : Shakeable
         // stolen from https://www.youtube.com/watch?v=KoFDDp5W5p0 if you were curious 
         else if (waypointIndex < waypoints.Count)
         {
-
             // Move Enemy from current waypoint to the next one
             // using MoveTowards method
             transform.position = Vector3.MoveTowards(transform.position,
@@ -87,6 +128,7 @@ public class Enemy : Shakeable
             if (transform.position == waypoints[waypointIndex].transform.position)
             {
                 waypointIndex += 1;
+                ChangeAnimationDir();
             }
 
         }

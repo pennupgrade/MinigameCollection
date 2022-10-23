@@ -14,6 +14,10 @@ public class EnemyPath : MonoBehaviour
     private float nextSpawnTime = 0.0f;
     public float spawnRate = 5f; // # of seconds b/n spawns
 
+    int level = 0;
+    List<int> levelThresholds = new List<int>() {10,20,30,40,50,75};
+    List<float> levelSpawnrates = new List<float>() {3f,2f,1f,0.5f,0.25f,0.1f};
+    
     void SpawnEnemy(int index)
     {
         GameObject newEnemy = Instantiate(possibleEnemies[index], path[0].position, Quaternion.identity);
@@ -37,6 +41,12 @@ public class EnemyPath : MonoBehaviour
         {
             nextSpawnTime += spawnRate;
             SpawnEnemy(0);
+        }
+
+        if (level <= levelThresholds.Count && GameManager.Instance.Killed >= levelThresholds[level])
+        {
+            spawnRate = levelSpawnrates[level];
+            level += 1;
         }
     }
 }
