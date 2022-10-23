@@ -31,7 +31,9 @@ public class Boss : MonoBehaviour
         {BossActionType.Dash, 2.5f }
     };
 
-    private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1", "Dash" , "UpSwept" };
+    //private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1", "Dash" , "UpSwept" };
+    //private string[] BossActionStage1 = new string[] { "UpSwept", "UpSwept" };
+    private string[] BossActionStage1 = new string[] { "MissileAttack" , "MissileAttack" };
 
 
     IEnumerator processAttack(int iter, string[] stage, int totalIter)
@@ -73,13 +75,13 @@ public class Boss : MonoBehaviour
                 bossAtk.laserAttack2(stage, player.transform.position, BossActionTime[currentAction]);
                 break;
             case BossActionType.MissileAttack:
-                bossAtk.missileAttack(stage, BossActionTime[currentAction]);
+                bossAtk.missileAttack(stage, player.transform.position, BossActionTime[currentAction]);
                 break;
             case BossActionType.Dash:
                 bossAtk.dash(stage);
                 break;
             case BossActionType.UpSwept:
-                bossAtk.upswept();
+                bossAtk.upswept(stage, this.gameObject.transform.position, player.transform.position, BossActionTime[currentAction]);
                 break;
         }
         return BossActionTime[currentAction];

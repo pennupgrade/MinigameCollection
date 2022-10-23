@@ -6,6 +6,7 @@ public class BossAttack : MonoBehaviour
 {
     public GameObject laserPrefab;
     public GameObject missilePrefab;
+    public GameObject swordPrefab;
 
     private Vector3 positionAtLeft;
     private Vector3 positionAtRight;
@@ -106,11 +107,12 @@ public class BossAttack : MonoBehaviour
 
     }
 
-    public void missileAttack(int stage, float time) {
-        //initialize a laser prefab
+    public void missileAttack(int stage, Vector3 playerPos, float time) {
+        //initialize a missile prefab
         if (stage == 1)
         {
-
+            //send one missile for now
+            singleMissileAttack(playerPos, time);
         }
         else if (stage == 2)
         {
@@ -122,19 +124,35 @@ public class BossAttack : MonoBehaviour
         }
     }
 
-    void singleMissileAttack(Vector3 center)
+    void singleMissileAttack(Vector3 center, float time)
     {
         //initialize a missile prefab thats gonna operate on its own term(with a rigidbody)
-        GameObject missile = Instantiate(missilePrefab, this.transform.position, Quaternion.identity);
+        Vector3 missileLauncher = this.transform.position;
+        missileLauncher.y += 2;
+        GameObject missile = Instantiate(missilePrefab, missileLauncher, Quaternion.identity);
+        missile.GetComponent<Missile>().targetPos = center;
     }
 
-    public void upswept() {
+    public void upswept(int stage, Vector3 startPos, Vector3 playerPos, float time) {
         //do animation of upswept
 
         //like laser attack we generate collider to see if sword collider with player
-        //GameObject sword = Instantiate()
-
-
+        float degree = -180;
+        bool playerAtRight = false;
+        if (playerPos.x > startPos.x)
+        {
+            degree = -degree;
+            playerAtRight = true;
+        }
+        
+        GameObject sword = Instantiate(swordPrefab, this.transform.position, Quaternion.identity);
+        Vector3 trans1 = playerAtRight ? new Vector3(3, 0, 0) : new Vector3(-3, 0, 0);
+        sword.transform.position += trans1;
+        Sword swordScript = sword.GetComponent<Sword>();
+        swordScript.Angle = degree;
+        swordScript.rotatePos = this.transform.position;
+        swordScript.destroyTime = time;
+        Destroy(sword, time);
     }
 
     IEnumerator lerpPosition(Vector3 targetPos, float duration) {

@@ -5,11 +5,18 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     public float damage = 10;
-    public float radius = 1;
+    private float radius = 3;
+    private float flyForce = 2;
+    private Rigidbody2D body;
+    private BoxCollider2D hitbox;
+    public Vector3 targetPos;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        body = this.GetComponent<Rigidbody2D>();
+        hitbox = this.GetComponent<BoxCollider2D>();
+        Vector3 forceVec = new Vector3((targetPos.x - this.transform.position.x)/2, 3, 0);
+        body.AddForce(forceVec * flyForce, ForceMode2D.Impulse);
     }
 
     // Update is called once per frame
@@ -18,14 +25,17 @@ public class Missile : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //cause damage around the sphere and explode
         //actual damage
-        float distanceToPlayer = gameObject.GetComponentInParent<Boss>().DistanceToPlayer;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        float distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+        print(distanceToPlayer);
         if (distanceToPlayer <= radius)
         {
-            collision.collider.GetComponent<PlayerScript>().AddDamage(damage);
+            player.GetComponent<PlayerScript>().AddDamage(damage);
         }
 
 

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8394354588693901397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0272, y: -0.1087, z: 0}
-  m_LocalScale: {x: 1, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,3 +128,4 @@ MonoBehaviour:
   Angle: 0
   rotatePos: {x: 0, y: 0, z: 0}
   destroyTime: 0
+  sweepStyle: 0
