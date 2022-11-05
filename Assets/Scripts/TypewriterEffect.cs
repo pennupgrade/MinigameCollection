@@ -15,7 +15,7 @@ public class TypewriterEffect : MonoBehaviour
 
     private IEnumerator TypeText(string textToType, TMP_Text textLabel)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         float t = 0;
         int charIndex = 0;
