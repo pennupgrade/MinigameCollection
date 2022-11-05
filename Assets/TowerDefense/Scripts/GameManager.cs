@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     {
         // placeholder just quit the editor
         //UnityEditor.EditorApplication.isPlaying = false;
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject go in gos)
+            Destroy(go);
         SceneManager.LoadScene("EndUI");
     }
 
@@ -121,8 +124,11 @@ public class GameManager : MonoBehaviour
         healthText.text = health.ToString();
         moneyText.text = money.ToString();
         cameraShake = Camera.main.GetComponent<Shakeable>();
-        initialCameraPos = Camera.main.transform.position;
+        initialCameraPos = new Vector3(0,12,-10);
+        Camera.main.enabled = true;
+        //initialCameraPos = Camera.main.transform.position;
         targetCameraPos = initialCameraPos;
+
     }  
 
     // Update is called once per frame

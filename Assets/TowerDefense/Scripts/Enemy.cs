@@ -61,18 +61,20 @@ public class Enemy : Shakeable
 
     void ChangeAnimationDir()
     {
+        if (waypointIndex >= waypoints.Count)
+            return;
         Vector3 dir = Vector3.Normalize(waypoints[waypointIndex].transform.position - transform.position);
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z))
         {
             if (dir.x > 0)
             {
                 animator.SetInteger("Dir",0);
-                Debug.Log("Right");
+                //Debug.Log("Right");
             }
             else
             {
                 animator.SetInteger("Dir",2);
-                Debug.Log("Left");
+                //Debug.Log("Left");
             }
         }
         else
@@ -80,12 +82,12 @@ public class Enemy : Shakeable
             if (dir.z > 0)
             {
                 animator.SetInteger("Dir",1);
-                Debug.Log("Up");
+                //Debug.Log("Up");
             }
             else
             {
                 animator.SetInteger("Dir",3);
-                Debug.Log("Down");
+                //Debug.Log("Down");
             }
         }
     }

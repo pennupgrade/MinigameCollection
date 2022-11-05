@@ -20,6 +20,7 @@ public class EnemyPath : MonoBehaviour
     
     void SpawnEnemy(int index)
     {
+        Debug.Log("Spawns Enemy");
         GameObject newEnemy = Instantiate(possibleEnemies[index], path[0].position, Quaternion.identity);
         newEnemy.GetComponent<Enemy>().Waypoints = path;
     }
@@ -27,6 +28,7 @@ public class EnemyPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nextSpawnTime = Time.time;
         path = new List<Transform>();
         for (int i = 0; i < transform.childCount; i++)
         {
