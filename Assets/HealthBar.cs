@@ -13,10 +13,10 @@ public class HealthBar : MonoBehaviour
         healthBar = GetComponent<Slider>();
         healthBar.value = 1.0f;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void SetHealth(float health) 
     {
-        healthBar.value -= Time.deltaTime * 0.1f;
-    }
+		healthBar.value = health;
+	}
+
 }
