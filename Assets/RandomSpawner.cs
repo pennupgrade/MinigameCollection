@@ -8,6 +8,9 @@ public class RandomSpawner : MonoBehaviour
 
     public Transform[] spawnPoints;
     public GameObject enemy;
+    public float spawnTimer = 0f;
+    public float gameTimer = 0f;
+    public float spawnTime = 1f;
 
     
     void Start()
@@ -19,9 +22,19 @@ public class RandomSpawner : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetMouseButtonDown(0)){
+        // update timers
+        spawnTimer += Time.deltaTime;
+        gameTimer += Time.deltaTime;
+
+        // if spawntime is reached, increase time
+        if (spawnTimer >= spawnTime){
             int randPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(enemy, spawnPoints[randPoint].position, transform.rotation);
+            spawnTimer = 0f;
+        }
+
+        if (gameTimer % 15 == 0) {
+            spawnTime -= 0.1f;
         }
         
     }
