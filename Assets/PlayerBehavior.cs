@@ -9,14 +9,17 @@ public class PlayerBehavior : MonoBehaviour
     public float jumpPower;
     private bool facingRight = false;
 
-    [SerializeField] private Rigidbody2D rb;
+    private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(0f, 20f, 0f);
+        rb = GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
  
     }
 
@@ -24,6 +27,7 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(horizontal * 7f, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -33,6 +37,11 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("Active");
         }
 
         Flip();
