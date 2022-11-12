@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9140562890270970486
 Transform:
@@ -67,7 +67,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9140562890674871112
 Transform:
@@ -217,8 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e88bb0ac12c84d4caabee3bfa5bf5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsNeeded: 3
-  hitsTaken: 0
+  health: 3
   transitionSpeed: 40
   respawnPoint: {fileID: 298792301556306657, guid: 3fcf7559b180eb048b3ff8b7f5b15a26, type: 3}
   playerPos: {fileID: 9140562890674871112}
@@ -233,12 +232,13 @@ GameObject:
   m_Component:
   - component: {fileID: 9140562891586090468}
   - component: {fileID: 9140562891586090395}
+  - component: {fileID: 8327833299819052122}
   m_Layer: 3
   m_Name: BackLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9140562891586090468
 Transform:
@@ -307,6 +307,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8327833299819052122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140562891586090469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7a3f49a2f8eb142b40c3442a698dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9140562891853700715
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +333,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9140562891853700714
 Transform:

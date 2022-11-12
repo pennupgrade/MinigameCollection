@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638020639432997400
+      ticks: 638032804491210312
     m_Hash: 1152155025
   m_LockFileStatus:
     m_FilePath: C:/Users/Philip/source/repos/MinigameCollection/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638020639433002422
+      ticks: 638032804491215309
     m_Hash: 2307867741
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -36,7 +36,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 2D
-  type: 
+  type: asset
   description: 2D Animation provides all the necessary tooling and runtime components
     for skeletal animation using Sprites.
   status: 4
@@ -140,9 +140,12 @@ m_ResolvedPackages:
     - 8.0.2
     - 8.0.3
     - 8.0.4
+    - 8.0.5
     - 9.0.0-pre.1
     - 9.0.0-pre.3
     - 9.0.0
+    - 9.0.1
+    - 10.0.0-pre.1
     compatible:
     - 7.0.6
     - 7.0.7
@@ -188,7 +191,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637892785830000000
   documentationUrl: 
@@ -215,7 +218,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: tool
   description: 'The 2D Pixel Perfect package contains the Pixel Perfect Camera component
     which ensures your pixel art remains crisp and clear at different resolutions,
     and stable in motion.
@@ -246,10 +249,12 @@ m_ResolvedPackages:
     - 5.0.0
     - 5.0.1
     - 5.0.2
+    - 5.0.3
     compatible:
     - 5.0.1
     - 5.0.2
-    verified: 5.0.2
+    - 5.0.3
+    verified: 5.0.3
   dependencies: []
   resolvedDependencies: []
   keywords:
@@ -291,7 +296,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 2D
-  type: 
+  type: asset
   description: A ScriptedImporter for importing Adobe Photoshop PSB (Photoshop Big)
     file format. The ScriptedImporter is currently targeted for users who wants to
     create multi Sprite character animation using Unity 2D Animation Package.
@@ -364,6 +369,8 @@ m_ResolvedPackages:
     - 8.0.0-pre.1
     - 8.0.0-pre.3
     - 8.0.0
+    - 8.0.1
+    - 9.0.0-pre.1
     compatible:
     - 6.0.4
     - 6.0.5
@@ -410,7 +417,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637901498510000000
   documentationUrl: 
@@ -488,7 +495,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 2D
-  type: 
+  type: asset
   description: SpriteShape Runtime & Editor Package contains the tooling and the
     runtime component that allows you to create very organic looking spline based
     2D worlds. It comes with intuitive configurator and a highly performant renderer.
@@ -570,6 +577,8 @@ m_ResolvedPackages:
     - 8.0.1
     - 9.0.0-pre.1
     - 9.0.0
+    - 9.0.1
+    - 10.0.0-pre.1
     compatible:
     - 7.0.4
     - 7.0.5
@@ -621,7 +630,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637817447990000000
   documentationUrl: 
@@ -698,7 +707,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 2D
-  type: 
+  type: asset
   description: '2D Tilemap Extras is a package that contains extra scripts for use
     with 2D Tilemap features in Unity. These include custom Tiles and Brushes for
     the Tilemap feature.
@@ -739,6 +748,7 @@ m_ResolvedPackages:
     - 3.0.0
     - 3.0.1
     - 3.0.2
+    - 4.0.0-pre.1
     compatible:
     - 2.2.3
     verified: 2.2.3
@@ -775,7 +785,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637892785880000000
   documentationUrl: 
@@ -3533,7 +3543,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: 'This package defines common components used by multiple Game Service
     packages.
 
@@ -3559,12 +3569,14 @@ m_ResolvedPackages:
     - 1.4.2
     - 1.4.3
     - 1.5.2
+    - 1.6.0
     compatible:
     - 1.4.0
     - 1.4.1
     - 1.4.2
     - 1.4.3
     - 1.5.2
+    - 1.6.0
     verified: 1.4.3
   dependencies:
   - name: com.unity.modules.unitywebrequest
@@ -3588,7 +3600,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637871962570000000
   documentationUrl: 
@@ -3680,7 +3692,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 2D
-  type: 
+  type: asset
   description: 2D Common is a package that contains shared functionalities that are
     used by most of the other 2D packages.
   status: 4
@@ -3726,9 +3738,12 @@ m_ResolvedPackages:
     - 7.0.0
     - 7.0.1
     - 7.0.2
+    - 7.0.3
     - 8.0.0-pre.1
     - 8.0.0-pre.2
     - 8.0.0
+    - 8.0.1
+    - 9.0.0-pre.1
     compatible:
     - 6.0.3
     - 6.0.4
@@ -3769,7 +3784,7 @@ m_ResolvedPackages:
     scopes: []
     isDefault: 1
     capabilities: 7
-  hideInEditor: 1
+  hideInEditor: 0
   isAssetStorePackage: 0
   datePublishedTicks: 637817447740000000
   documentationUrl: 
