@@ -56,31 +56,4 @@ public class CarrotShooter : MonoBehaviour
         //}
     }
 
-    // Spawns x number of projectiles.
-    //private void SpawnProjectile(int _numberOfProjectiles)
-    //{
-    //    float angleStep = 360f / _numberOfProjectiles;
-    //    float angle = 0f;
-
-    //    for (int i = 0; i <= _numberOfProjectiles - 1; i++)
-    //    {
-    //        // Direction calculations.
-    //        float projectileDirXPosition = this.transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-    //        float projectileDirYPosition = this.transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
-
-    //        // Create vectors.
-    //        Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
-    //        Vector3 projectileMoveDirection = (projectileVector - this.transform.position).normalized;
-
-    //        // Create game objects.
-    //        GameObject tmpObj = Instantiate(ProjectilePrefab, this.transform.position, Quaternion.identity);
-    //        tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
-
-    //        // Destory the gameobject after 10 seconds.
-    //        Destroy(tmpObj, 10F);
-
-    //        angle += angleStep;
-    //    }
-    //}
-
 }
