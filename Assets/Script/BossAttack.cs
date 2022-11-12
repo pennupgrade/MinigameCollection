@@ -116,11 +116,14 @@ public class BossAttack : MonoBehaviour
         }
         else if (stage == 2)
         {
+            singleMissileAttack(playerPos, time);
+            //add more for stage change
 
         }
         else if (stage == 3)
         {
-
+            singleMissileAttack(playerPos, time);
+            //add more for stage change
         }
     }
 

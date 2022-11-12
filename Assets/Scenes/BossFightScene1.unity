@@ -760,10 +760,9 @@ GameObject:
   - component: {fileID: 1484108675}
   - component: {fileID: 1484108674}
   - component: {fileID: 1484108680}
-  - component: {fileID: 1484108679}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,6 +781,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 8394354588693901397, guid: 247ce131845ae85488c07322543cfb58, type: 3}
   missilePrefab: {fileID: 4220147179711334940, guid: b8e2a5df01b375448ae91f387cae2a24, type: 3}
+  swordPrefab: {fileID: 8394354588693901397, guid: 1af0c526a9409194b9e050aa4ee60abd, type: 3}
+  pos:
+  - {x: -6, y: -0.98, z: 0}
+  - {x: 6, y: -0.98, z: 0}
+  - {x: 0, y: -0.98, z: 0}
 --- !u!114 &1484108675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,11 +798,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee4880138f58427589b1f3cf0703a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stage: 1
   hp: 100
   DistanceToPlayer: 0
   player: {fileID: 851422500}
-  BossActionStage1:
-  - LaserAttack1, LaserAttack2, MissileAttack
 --- !u!212 &1484108677
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -859,34 +862,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484108673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2223, y: -0.8218, z: 0}
+  m_LocalPosition: {x: 6.2223, y: -0.95, z: 0}
   m_LocalScale: {x: 2.8645, y: 5.7565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1484108679
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484108673}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1484108680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -897,7 +879,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -938,7 +920,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772109969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.41, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

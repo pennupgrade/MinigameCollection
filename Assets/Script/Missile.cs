@@ -11,11 +11,11 @@ public class Missile : MonoBehaviour
     private BoxCollider2D hitbox;
     public Vector3 targetPos;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
         hitbox = this.GetComponent<BoxCollider2D>();
-        Vector3 forceVec = new Vector3((targetPos.x - this.transform.position.x)/2, 3, 0);
+        Vector3 forceVec = new Vector3((targetPos.x - this.transform.position.x)/2, 3, 0);//this force still needs to be modified a little for best performance
         body.AddForce(forceVec * flyForce, ForceMode2D.Impulse);
     }
 
@@ -32,7 +32,7 @@ public class Missile : MonoBehaviour
         //actual damage
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         float distanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
-        print(distanceToPlayer);
+        //print(distanceToPlayer);
         if (distanceToPlayer <= radius)
         {
             player.GetComponent<PlayerScript>().AddDamage(damage);
@@ -41,6 +41,9 @@ public class Missile : MonoBehaviour
 
         //visually explosion
         //play explosion animation
-        Destroy(gameObject);
+
+
+        //destroy the missile a little later
+        Destroy(gameObject, 0.2f);
     }
 }

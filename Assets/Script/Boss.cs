@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     public float DistanceToPlayer;
     public GameObject player;
     private BossAttack bossAtk;
+    public float DistanceToTriggerSlash;
     //so for this Boss the scripted behavior will be 
     // Start is called before the first frame update
     public enum BossActionType {
@@ -27,13 +28,16 @@ public class Boss : MonoBehaviour
         { BossActionType.LaserAttack1, 2.5f},
         {BossActionType.LaserAttack2, 2.5f },
         {BossActionType.MissileAttack, 2.5f },
-        {BossActionType.UpSwept, 2.5f },
+        {BossActionType.UpSwept, 0.6f },
         {BossActionType.Dash, 2.5f }
     };
 
-    //private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1", "Dash" , "UpSwept" };
+    private string[] BossActionStage1 = new string[]{ "LaserAttack1", "LaserAttack2", "LaserAttack1", "UpSwept" };
     //private string[] BossActionStage1 = new string[] { "UpSwept", "UpSwept" };
-    private string[] BossActionStage1 = new string[] { "MissileAttack" , "MissileAttack" };
+    //private string[] BossActionStage1 = new string[] { "MissileAttack" , "MissileAttack", "MissileAttack", "MissileAttack"};
+    private string[] BossActionSwept = new string[] { "UpSwept" };
+    //so how boss attack script works is that you will have a string[] for each of the boss's attack sequence, and the boss will attack based on this  order
+    //since dash is deprecated just dont put dash in the string[]
 
 
     IEnumerator processAttack(int iter, string[] stage, int totalIter)
@@ -61,11 +65,13 @@ public class Boss : MonoBehaviour
         if (bossAtk == null)//just in case
         {
             print("BossAtk is null cannot proceed");
+            //gameover procedure
         } 
         switch (currentAction)
         {
             case BossActionType.Idle:
                 //do idle animation? todo
+
                 break;
             case BossActionType.LaserAttack1:
                 //process one laser attack
@@ -99,9 +105,19 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //update serves for 2 purpose: 1 is to have the stage transition, 2 is to have the boss upswept when player is too close
+        //boss upswept
         DistanceToPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+        if (DistanceToPlayer <= DistanceToTriggerSlash)
+        {
+            IEnumerator atk = processAttack(0, BossActionSwept, BossActionSwept.Length);
+            StartCoroutine(atk);
+        }
+
+
+        //stage transition
         checkStageChange();
-        switch (stage) {
+        /*switch (stage) {
             case 0:
 
             break;
@@ -117,16 +133,19 @@ public class Boss : MonoBehaviour
             case 3:
 
             break;
-        }
+        }*///add more when theres more mechanism
     }
 
     void stageTransition(int stage) {
         if (stage == 1) {
             //play stage change animation for the second stage
+
         } else if (stage == 2) {
             //play stage change animation for the third stage
+
         } else {
             //play dead animation for the forth stage and close all possible patterns
+
         }
     }
 
