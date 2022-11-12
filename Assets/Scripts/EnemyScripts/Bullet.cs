@@ -33,6 +33,11 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void Intersect(GameObject other)
+    {
+        
+    }
+
     private void OnDisable()
     {
         CancelInvoke();
