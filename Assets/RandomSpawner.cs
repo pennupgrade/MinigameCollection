@@ -10,8 +10,9 @@ public class RandomSpawner : MonoBehaviour
     public GameObject enemy;
     public float spawnTimer = 0f;
     public float gameTimer = 0f;
-    public float spawnTime = 1f;
-
+    public float spawnTime = 5f;
+    public static int enemiesAlive = 0;
+    public int maxEnemies = 8;
     
     void Start()
     {
@@ -27,10 +28,11 @@ public class RandomSpawner : MonoBehaviour
         gameTimer += Time.deltaTime;
 
         // if spawntime is reached, increase time
-        if (spawnTimer >= spawnTime){
+        if (spawnTimer >= spawnTime && enemiesAlive < maxEnemies){
             int randPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(enemy, spawnPoints[randPoint].position, transform.rotation);
             spawnTimer = 0f;
+            enemiesAlive++;
         }
 
         if (gameTimer % 15 == 0) {

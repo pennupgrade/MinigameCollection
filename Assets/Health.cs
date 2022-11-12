@@ -32,6 +32,7 @@ public class Health : MonoBehaviour
     }
 
     private void Die() {
+        RandomSpawner.enemiesAlive--;
         Debug.Log("I am dead");
     }
 }
