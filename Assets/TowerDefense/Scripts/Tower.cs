@@ -47,7 +47,7 @@ public class Tower : Shakeable
         line.enabled = false;
     }
 
-    void AttemptShootEnemy()
+    bool AttemptShootEnemy()
     {
         //Debug.Log("trying to shoot");
         for (int i = 0; i < currentCollisions.Count; i++)
@@ -72,10 +72,11 @@ public class Tower : Shakeable
                     e.Damage(damage);
                     BeginShake();
                     
-                    return;
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     // Update is called once per frame
@@ -83,10 +84,14 @@ public class Tower : Shakeable
     {
         if (Time.time > nextShootTime)
         {
-            nextShootTime += shootDelay;
-            AttemptShootEnemy();
+            if (AttemptShootEnemy())
+            {
+                nextShootTime = Time.time + shootDelay;
+            }
+            
+            
         }
-        else if (Time.time > nextShootTime - 0.5f) { // super placeholder colors
+        if (Time.time > nextShootTime - 0.5f) { // super placeholder colors
             GetComponent<Renderer>().material.color = Color.green;
             line.enabled = false;
         }

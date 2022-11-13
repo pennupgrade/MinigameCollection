@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3598579508041227739}
   - component: {fileID: 4817035965547921279}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Big Enemy!!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7612830379679989653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.55, y: 4, z: 0}
-  m_LocalScale: {x: 0.6761, y: 0.6761, z: 0.6761}
+  m_LocalPosition: {x: -6.55, y: 4.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -168911498, guid: 53fa8325fc84dc14a9b4f6a77470aebd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.33998173, b: 0.32704395, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf7f5c27c30eb748ad9c7823d8c07cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeTime: 0.2
+  _shakeTime: 0.3
   _shakeDistance: 0.1
   _delayBetweenShakes: 0
-  reward: 5
-  fadeAwayTime: 0.5
-  moveSpeed: 5
-  maxHealth: 100
+  reward: 50
+  fadeAwayTime: 1
+  moveSpeed: 1
+  maxHealth: 500
 --- !u!114 &4157966409325727407
 MonoBehaviour:
   m_ObjectHideFlags: 0

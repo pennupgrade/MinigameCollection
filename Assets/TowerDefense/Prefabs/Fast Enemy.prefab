@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3598579508041227739}
   - component: {fileID: 4817035965547921279}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Fast Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -168911498, guid: 53fa8325fc84dc14a9b4f6a77470aebd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.88433737, b: 0.20440245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,10 +103,10 @@ MonoBehaviour:
   _shakeTime: 0.2
   _shakeDistance: 0.1
   _delayBetweenShakes: 0
-  reward: 5
+  reward: 10
   fadeAwayTime: 0.5
-  moveSpeed: 5
-  maxHealth: 100
+  moveSpeed: 15
+  maxHealth: 50
 --- !u!114 &4157966409325727407
 MonoBehaviour:
   m_ObjectHideFlags: 0

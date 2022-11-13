@@ -45,7 +45,7 @@ public class TowerUpgrade : MonoBehaviour
         damageUpgradeCost.text = "Cost: " + tower.damageCost;
         
         attackSpeedUpgradeCost.text = "Cost: " + tower.speedCost;
-        currentAttackSpeed.text = "Current Bullets Per Second: " + 1/tower.shootDelay;
+        currentAttackSpeed.text = "Current Bullets Per Second: " + (1/tower.shootDelay).ToString("F2");
     }
 
     public void Open(Tower t)

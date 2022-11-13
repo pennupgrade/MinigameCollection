@@ -24,7 +24,7 @@ public class Enemy : Shakeable
 
     private Animator animator;
 
-    
+    private SpriteRenderer spriteRenderer;
 
     private int waypointIndex = 0;
     private List<Transform> waypoints;
@@ -40,8 +40,10 @@ public class Enemy : Shakeable
     void Start()
     {
         health = maxHealth;
-        GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         animator = GetComponent<Animator>();
+        
         ChangeAnimationDir();
     }
 
@@ -122,7 +124,7 @@ public class Enemy : Shakeable
             // using MoveTowards method
             transform.position = Vector3.MoveTowards(transform.position,
                waypoints[waypointIndex].transform.position,
-               moveSpeed * Time.deltaTime);
+               moveSpeed * Time.deltaTime * (GameManager.Instance.timeSlowed ? 0.35f : 1f));
 
             // If Enemy reaches position of waypoint he walked towards
             // then waypointIndex is increased by 1
@@ -147,6 +149,17 @@ public class Enemy : Shakeable
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Damage(10);
+        }
+
+        if (GameManager.Instance.timeSlowed && spriteRenderer.color.a == 1)
+        {
+            Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.8f);
+            spriteRenderer.color = newColor;
+        }
+        else if (!GameManager.Instance.timeSlowed && spriteRenderer.color.a != 1)
+        {
+            Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+            spriteRenderer.color = newColor;
         }
 
     }

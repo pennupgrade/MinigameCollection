@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
     public Vector3 initialCameraPos;
     private Vector3 targetCameraPos;
 
+    public bool timeSlowed = false;
+
     private Shakeable cameraShake;
 
     [SerializeField]
     private int health;
-
 
     private int enemiesKilled = 0;
 

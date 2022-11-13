@@ -27,6 +27,12 @@ public class TowerSquare : MonoBehaviour
             active = true;
             //GetComponent<Renderer>().enabled = false;
             //GetComponent<Renderer>().material.color = new Color(0,0,0,0.0f);
+
+            // hide cost UI objects
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 
@@ -38,10 +44,8 @@ public class TowerSquare : MonoBehaviour
             //Debug.Log("faoewjfwe");
             if(mousedOver)
             {
-                Debug.Log("moused over click");
                 if (active)
                 {
-                    Debug.Log("Active click");
                     GameManager.Instance.OpenTowerUpgradePanel(currentTower);
                 }
                 else
