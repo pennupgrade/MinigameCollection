@@ -36,6 +36,18 @@ public class Enemy : Shakeable
 
     }
 
+    public float CompareTo(Enemy e)
+    {
+        int c = waypointIndex - e.waypointIndex;
+        if (c == 0)
+        {
+            Vector3 dist = waypoints[waypointIndex-1].position - transform.position; // distance from prev waypoint
+            Vector3 otherDist = e.waypoints[waypointIndex-1].position - e.transform.position;
+            return Vector3.Dot(dist, dist) - Vector3.Dot(otherDist, otherDist); 
+        }
+        return c;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

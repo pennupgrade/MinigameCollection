@@ -50,6 +50,7 @@ public class Tower : Shakeable
     bool AttemptShootEnemy()
     {
         //Debug.Log("trying to shoot");
+        Enemy toShoot = null;
         for (int i = 0; i < currentCollisions.Count; i++)
         {
             if (currentCollisions[i] == null)
@@ -61,22 +62,26 @@ public class Tower : Shakeable
             {
                 Enemy e = currentCollisions[i].GetComponent<Enemy>();
                 if (e != null) {
-                    
-                    //enemy shoot animation here
-                    GetComponent<Renderer>().material.color = Color.red;
-            
-                    // set the position
-                    line.SetPosition(1, currentCollisions[i].transform.position);
-                    line.enabled = true;
-
-                    e.Damage(damage);
-                    BeginShake();
-                    
-                    return true;
+                    // prioritize farthest along enemy to shoot
+                    toShoot = (toShoot == null || e.CompareTo(toShoot) > 0) ? e : toShoot;
                 }
             }
         }
-        return false;
+
+        if (toShoot != null)
+        {
+            //enemy shoot animation here
+            GetComponent<Renderer>().material.color = Color.red;
+
+            // set the position
+            line.SetPosition(1, toShoot.gameObject.transform.position);
+            line.enabled = true;
+
+            toShoot.Damage(damage);
+            BeginShake();
+        }
+
+        return toShoot != null;
     }
 
     // Update is called once per frame
@@ -87,9 +92,7 @@ public class Tower : Shakeable
             if (AttemptShootEnemy())
             {
                 nextShootTime = Time.time + shootDelay;
-            }
-            
-            
+            }     
         }
         if (Time.time > nextShootTime - 0.5f) { // super placeholder colors
             GetComponent<Renderer>().material.color = Color.green;

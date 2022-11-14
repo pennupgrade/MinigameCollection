@@ -8,6 +8,7 @@ public class TimeSlowButton : MonoBehaviour
     // Start is called before the first frame update
     public Text label;
     public int cost;
+    int lastCost;
     public float slowDuration = 5f;
 
     // PLACEHOLDER JUST GOING TO SPAWN EVERY X SECONDS
@@ -17,6 +18,7 @@ public class TimeSlowButton : MonoBehaviour
     void Start()
     {
         UpdateLabel();
+        lastCost = cost;
     }
 
     void UpdateLabel()
@@ -36,6 +38,9 @@ public class TimeSlowButton : MonoBehaviour
             return;
         endSlowTime = Time.time + slowDuration;
         GameManager.Instance.timeSlowed = true;
+        int c = cost;
+        cost += lastCost;
+        lastCost = c;
         UpdateLabel();
     }
 

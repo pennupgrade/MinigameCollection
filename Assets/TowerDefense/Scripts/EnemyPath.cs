@@ -37,7 +37,7 @@ public class EnemyPath : MonoBehaviour
         levelThresholds = new List<int>()   {10,20,30,40,50,75,100,999};
 
         // spawn rates at each level
-        levelSpawnrates = new List<float>() {5f,3f,2f,1f,0.5f,0.25f,0.25f};
+        levelSpawnrates = new List<float>() {5f,3f,2f,1f,0.5f,0.25f,0.25f,0.25f};
 
         // probability distributions at each level
         // normal, slow, fast, big, kill you
@@ -85,7 +85,7 @@ public class EnemyPath : MonoBehaviour
             
         }
 
-        if (level < levelThresholds.Count && GameManager.Instance.Killed >= levelThresholds[level])
+        if (level < levelThresholds.Count - 1&& GameManager.Instance.Killed >= levelThresholds[level])
         {
             spawnRate = levelSpawnrates[level];
             level += 1;

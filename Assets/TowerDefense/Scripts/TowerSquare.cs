@@ -16,7 +16,7 @@ public class TowerSquare : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color(1,1,1,0.5f);
+        GetComponent<Renderer>().material.color = new Color(1,1,1,0.0f);
     }
 
     void PurchaseTower() {

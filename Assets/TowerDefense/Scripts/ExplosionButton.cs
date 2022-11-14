@@ -11,6 +11,7 @@ public class ExplosionButton : MonoBehaviour
 
     public Text label;
     public int cost;
+    int lastCost;
     public int damage;
 
     public GameObject explosionRadiusObj;
@@ -20,6 +21,7 @@ public class ExplosionButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lastCost = cost;
         UpdateLabel();
         explosion = explosionRadiusObj.GetComponent<ExplosionRadius>();
     }
@@ -65,6 +67,9 @@ public class ExplosionButton : MonoBehaviour
                 {
                     GameManager.Instance.Money -= cost;
                     explosion.Damage(damage);
+                    int c = cost;
+                    cost += lastCost;
+                    lastCost = c;
                     ToggleActive();
                 }
             }
