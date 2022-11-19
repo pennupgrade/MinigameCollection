@@ -1271,8 +1271,8 @@ MonoBehaviour:
   deathVelocityY: 3
   flyFactor: 2.4
   rotation: 2
-  timeToMaxVelocity: 0.8
-  down: 0.01
+  timeToMaxVelocity: 1.2
+  down: 0.004
 --- !u!1 &1069923725
 GameObject:
   m_ObjectHideFlags: 0
