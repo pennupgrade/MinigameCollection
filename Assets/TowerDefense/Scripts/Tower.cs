@@ -20,7 +20,7 @@ public class Tower : Shakeable
     {
         int temp = speedCost;
         speedCost += prevSpeedCost;
-        prevDamageCost = temp;
+        prevSpeedCost = temp;
     }
 
     public void incDamageCost()
