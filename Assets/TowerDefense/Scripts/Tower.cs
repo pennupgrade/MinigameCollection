@@ -14,7 +14,11 @@ public class Tower : Shakeable
     public int damageCost = 5;
 
 
+    private float VOLUME = 0.3f;
+
     private LineRenderer line;
+
+    private AudioSource audioSource;
 
     // Declare and initialize a new List of GameObjects called currentCollisions.
     private List<GameObject> currentCollisions;
@@ -38,7 +42,8 @@ public class Tower : Shakeable
         currentCollisions = new List <GameObject> ();
         GetComponent<Renderer>().material.color = Color.green;
         line = GetComponent<LineRenderer>();
-
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = VOLUME;
         // set width of the renderer
         line.startWidth = 0.05f;
         line.endWidth = 0.05f;
@@ -61,7 +66,7 @@ public class Tower : Shakeable
             else
             {
                 Enemy e = currentCollisions[i].GetComponent<Enemy>();
-                if (e != null) {
+                if (e != null && e.Health > 0) {
                     // prioritize farthest along enemy to shoot
                     toShoot = (toShoot == null || e.CompareTo(toShoot) > 0) ? e : toShoot;
                 }
@@ -78,6 +83,7 @@ public class Tower : Shakeable
             line.enabled = true;
 
             toShoot.Damage(damage);
+            audioSource.Play();
             BeginShake();
         }
 
@@ -94,7 +100,7 @@ public class Tower : Shakeable
                 nextShootTime = Time.time + shootDelay;
             }     
         }
-        if (Time.time > nextShootTime - 0.5f) { // super placeholder colors
+        if (Time.time > nextShootTime - shootDelay + 0.1f) { // super placeholder colors
             GetComponent<Renderer>().material.color = Color.green;
             line.enabled = false;
         }

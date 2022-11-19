@@ -12,6 +12,7 @@ public class TowerUpgrade : MonoBehaviour
     public Text attackSpeedUpgradeCost;
     public Text currentDamage;
     public Text damageUpgradeCost;
+    public AudioSource upgradeSound;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class TowerUpgrade : MonoBehaviour
             GameManager.Instance.Money -= tower.damageCost;
             tower.damageCost += 5;
             UpdateText();
+            upgradeSound.Play();
         }
     }
     
@@ -36,6 +38,7 @@ public class TowerUpgrade : MonoBehaviour
             GameManager.Instance.Money -= tower.speedCost;
             tower.speedCost += 5;
             UpdateText();
+            upgradeSound.Play();
         }
     }
 

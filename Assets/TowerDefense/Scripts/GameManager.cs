@@ -43,11 +43,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int money;
 
+    public AudioClip[] hurtSounds;
+
+    private float VOLUME = 0.8f;
+
     public Text healthText;
     public Text moneyText;
     public Text killedText;
     public GameObject towerUpgradePanel;
 
+
+    private AudioSource audioSource;
 
     public void Die()
     {
@@ -65,6 +71,8 @@ public class GameManager : MonoBehaviour
         // if you lose health, shake the camera
         if (h < health)
         {
+            int i = Random.Range(0, (hurtSounds.Length - 1));
+            audioSource.PlayOneShot(hurtSounds[i]);
             ShakeCamera();
         }
 
@@ -129,7 +137,8 @@ public class GameManager : MonoBehaviour
         Camera.main.enabled = true;
         //initialCameraPos = Camera.main.transform.position;
         targetCameraPos = initialCameraPos;
-
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = VOLUME;
     }  
 
     // Update is called once per frame

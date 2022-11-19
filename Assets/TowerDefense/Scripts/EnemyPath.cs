@@ -13,6 +13,7 @@ public class EnemyPath : MonoBehaviour
     // PLACEHOLDER JUST GOING TO SPAWN EVERY X SECONDS
     private float nextSpawnTime = 0.0f;
     public float spawnRate = 5f; // # of seconds b/n spawns
+    private float time;
 
     int level = 0;
     List<int> levelThresholds;
@@ -34,10 +35,10 @@ public class EnemyPath : MonoBehaviour
         // level definitions
 
         // amount required to go to next level (last one doesn't matter, will never be accessed anyway)
-        levelThresholds = new List<int>()   {10,20,30,40,50,75,100,999};
+        levelThresholds = new List<int>()   {10,20,30,40,50,75,100,150,999};
 
         // spawn rates at each level
-        levelSpawnrates = new List<float>() {5f,3f,2f,1f,0.5f,0.25f,0.25f,0.25f};
+        levelSpawnrates = new List<float>() {5f,3f,2f,1f,0.5f,0.5f,1f,0.25f,0.25f};
 
         // probability distributions at each level
         // normal, slow, fast, big, kill you
@@ -48,9 +49,11 @@ public class EnemyPath : MonoBehaviour
         enemyProbabilities.Add(new List<float>(){0.35f,0.3f,0.3f,0.05f,0f});
         enemyProbabilities.Add(new List<float>(){0f,0.45f,0.45f,0.1f,0f});
         enemyProbabilities.Add(new List<float>(){0f,0f,0f,1f,0f});
+        enemyProbabilities.Add(new List<float>() { 0f, 0f, 0f, 0.5f, 0.5f });
         enemyProbabilities.Add(new List<float>(){0f,0f,0f,0f,1f}); // hopefully they just die here
 
-        nextSpawnTime = Time.time + 3;
+        time = Time.time;
+        nextSpawnTime = time + 2;
         path = new List<Transform>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -61,7 +64,8 @@ public class EnemyPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextSpawnTime)
+        time += GameManager.Instance.timeSlowed ? Time.deltaTime / 2 : Time.deltaTime;
+        if (time > nextSpawnTime)
         {
             nextSpawnTime += levelSpawnrates[level];
             float rand = Random.Range(0.0f,1.0f);

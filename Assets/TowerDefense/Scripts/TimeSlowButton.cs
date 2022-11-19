@@ -11,6 +11,8 @@ public class TimeSlowButton : MonoBehaviour
     int lastCost;
     public float slowDuration = 5f;
 
+    public AudioSource sound;
+
     // PLACEHOLDER JUST GOING TO SPAWN EVERY X SECONDS
     private float endSlowTime = 0.0f;
     
@@ -38,6 +40,7 @@ public class TimeSlowButton : MonoBehaviour
             return;
         endSlowTime = Time.time + slowDuration;
         GameManager.Instance.timeSlowed = true;
+        sound.Play();
         int c = cost;
         cost += lastCost;
         lastCost = c;

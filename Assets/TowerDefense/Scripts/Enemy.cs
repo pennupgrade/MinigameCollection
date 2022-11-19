@@ -7,6 +7,7 @@ public class Enemy : Shakeable
 
     [Header("Enemy Settings")]
 
+
     [SerializeField]
     private int reward = 1;
 
@@ -20,6 +21,11 @@ public class Enemy : Shakeable
     [SerializeField]
     private float maxHealth;
 
+
+    public AudioClip[] hurtSounds;
+
+    public float Health { get { return health; } }
+
     private float health;
 
     private Animator animator;
@@ -28,6 +34,12 @@ public class Enemy : Shakeable
 
     private int waypointIndex = 0;
     private List<Transform> waypoints;
+
+    private AudioSource audioSource;
+    private float VOLUME = 0.3f;
+
+    [SerializeField]
+    private float hurtSoundPitch = 1f;
 
     public List<Transform> Waypoints
     {
@@ -55,6 +67,10 @@ public class Enemy : Shakeable
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = hurtSoundPitch;
+        audioSource.volume = VOLUME;
         
         ChangeAnimationDir();
     }
@@ -62,7 +78,8 @@ public class Enemy : Shakeable
 
     public void Damage(float amt)
     {
-
+        int i = Random.Range(0, (hurtSounds.Length - 1));
+        audioSource.PlayOneShot(hurtSounds[i]);
         if (health > 0)
         {
             this.BeginShake();
@@ -163,6 +180,7 @@ public class Enemy : Shakeable
             Damage(10);
         }
 
+        /*
         if (GameManager.Instance.timeSlowed && spriteRenderer.color.a == 1)
         {
             Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.8f);
@@ -173,6 +191,7 @@ public class Enemy : Shakeable
             Color newColor = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
             spriteRenderer.color = newColor;
         }
+        */
 
     }
 }

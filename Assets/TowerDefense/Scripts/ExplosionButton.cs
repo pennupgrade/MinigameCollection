@@ -72,6 +72,10 @@ public class ExplosionButton : MonoBehaviour
                     lastCost = c;
                     ToggleActive();
                 }
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    ToggleActive();
+                }
             }
             else
             {
