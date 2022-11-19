@@ -11,8 +11,24 @@ public class Tower : Shakeable
     public float damage = 50f;
     
     public int speedCost = 5;
+    
     public int damageCost = 5;
+    public int prevSpeedCost;
+    public int prevDamageCost;
 
+    public void incSpeedCost()
+    {
+        int temp = speedCost;
+        speedCost += prevSpeedCost;
+        prevDamageCost = temp;
+    }
+
+    public void incDamageCost()
+    {
+        int temp = damageCost;
+        damageCost += prevDamageCost;
+        prevDamageCost = temp;
+    }
 
     private float VOLUME = 0.3f;
 
@@ -44,6 +60,8 @@ public class Tower : Shakeable
         line = GetComponent<LineRenderer>();
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = VOLUME;
+        prevDamageCost = damageCost;
+        prevSpeedCost = speedCost;
         // set width of the renderer
         line.startWidth = 0.05f;
         line.endWidth = 0.05f;

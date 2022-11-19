@@ -25,7 +25,7 @@ public class TowerUpgrade : MonoBehaviour
         {
             tower.damage += 10;
             GameManager.Instance.Money -= tower.damageCost;
-            tower.damageCost += 5;
+            tower.incDamageCost();
             UpdateText();
             upgradeSound.Play();
         }
@@ -36,7 +36,7 @@ public class TowerUpgrade : MonoBehaviour
         {
             tower.shootDelay /= 1.1f;
             GameManager.Instance.Money -= tower.speedCost;
-            tower.speedCost += 5;
+            tower.incSpeedCost();
             UpdateText();
             upgradeSound.Play();
         }
