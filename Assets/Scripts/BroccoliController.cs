@@ -13,16 +13,20 @@ public class BroccoliController : MonoBehaviour
     private GameObject bulletPrefab;
 
     private bool canFire = true;
-    private float cooldownTime = 1f;
-    float shootTimer;
-    float shootCooldown = 200f;
+    // private float cooldownTime = 100f;
+    float shootTimer = 0.0f;
+    float shootCooldown = 50.0f;
 
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
     }
+    // var shot = Instantiate(ProjectilePrefab, new Vector3(transform.position.x, (transform.position.y - 0.3f), transform.position.z), (new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, 0)));
+    //     shot.GetComponent<Rigidbody2D>().velocity = test * speed;
+    //     shot.transform.parent = this.transform;
+    //     Invoke("SpiralLaser", fireRate);
 
-    void FixedUpdate()
+    void Update()
     {
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -69,20 +73,21 @@ public class BroccoliController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) && canFire)
+        if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             Fire();
             shootTimer = 0;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(this);
-            Debug.Log("Destroyed");
-        }
+        // if (other.gameObject.CompareTag("Bullet"))
+        // {
+        //     Destroy(this);
+        //     // destroy other
+        //     Debug.Log("Destroyed");
+        // }
         Debug.Log("Collision");
 
     }
@@ -92,7 +97,7 @@ public class BroccoliController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         bullet.GetComponent<Bullet>().SetMoveDirection(new Vector2(1, 0).normalized);
         canFire = false;
-        
+        //Debug.Log(canFire);
     }
 
 }

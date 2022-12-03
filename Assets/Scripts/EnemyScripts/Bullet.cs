@@ -33,9 +33,19 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnTriggerEnter2D(Collider2D other) // 2d, trigger
+    {
+        Debug.Log("Collision Bullet");
+        if (other.gameObject.CompareTag("Bullet")) {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            Debug.Log("Destroyed");
+        }
+    }
+
     public void Intersect(GameObject other)
     {
-        
+        ;
     }
 
     private void OnDisable()
