@@ -5,11 +5,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
 
-    [SerializeField] private int health = 50;
-    private int MAX_HEALTH = 50;
+    [SerializeField] private int health = 20;
+    private int MAX_HEALTH = 20;
+    Animator anim;
 
     private void Start() {
         health = MAX_HEALTH;
+        anim = GetComponent <Animator> ();
     }
 
     public void Damage(int amount) {
@@ -17,8 +19,9 @@ public class Health : MonoBehaviour
         Debug.Log(this.health);
 
         if (this.health <= 0) {
+            anim.SetTrigger("Death");
             Die();
-            Destroy(gameObject);
+            StartCoroutine(waiter());
         }
     }
 
@@ -33,5 +36,11 @@ public class Health : MonoBehaviour
 
     private void Die() {
         RandomSpawner.enemiesAlive--;
+    }
+
+    IEnumerator waiter() 
+    {
+         yield return new WaitForSeconds (1f);
+         Destroy(gameObject);
     }
 }
