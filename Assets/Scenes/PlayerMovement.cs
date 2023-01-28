@@ -49,18 +49,4 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Coins"))
-        {
-            Destroy(other.gameObject);
-            CurrencyManager.Instance.Currency++;
-        }
-        if (other.gameObject.CompareTag("End"))
-        {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
-        }
-    }
 }
