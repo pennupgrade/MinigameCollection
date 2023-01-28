@@ -45,7 +45,7 @@ public class SeedStorageBehavior : MonoBehaviour
         }
     }
 
-    void getSRSeeds() 
+    void refillSRSeeds() 
     {
         if (remainingSRSeeds < 100) 
         {
