@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
         if (timer >= maxTime) {
             dir *= -1;
             timer = 0;
-            Debug.Log("switching directions");
+            //Debug.Log("switching directions");
         }
         transform.Translate(new Vector2(dir, 0) * moveSpeed * Time.deltaTime);
         
