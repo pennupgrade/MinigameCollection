@@ -19,7 +19,7 @@ public class WaterStorageBehavior : MonoBehaviour
         
     }
 
-    public void collectWater()
+    void collectWater()
     {
         if (remainingWater > 0) {
             Debug.Log("water left in tank: " + remainingWater + "%");
@@ -29,7 +29,7 @@ public class WaterStorageBehavior : MonoBehaviour
         }
     }
 
-    public void refillWater()
+    void refillWater()
     {
         if (remainingWater < 100) {
             remainingWater += 1;
