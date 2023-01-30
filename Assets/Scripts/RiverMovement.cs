@@ -4,34 +4,81 @@ using UnityEngine;
 
 public class RiverMovement : MonoBehaviour
 {
-    private float movementSpd = 5f;
+    private enum Direction {UP, LEFT, DOWN, RIGHT};
+    
+    private float horizontalSpd;
+    private float verticalSpd;
+
+    private float minSpd = 2f;
+    
+    private float maxSpd = 5f;
+
+    private float acceleration = 0.3f;
+
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
+        horizontalSpd = minSpd;
+        verticalSpd = minSpd;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            this.transform.position += new Vector3(0, movementSpd * Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.UpArrow)) {
+            move(Direction.UP);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            this.transform.position += new Vector3(-movementSpd * Time.deltaTime, 0);
-            this.spriteRenderer.flipX = false;
+        if (Input.GetKey(KeyCode.LeftArrow)) {
+            move(Direction.LEFT);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            this.transform.position += new Vector3(0, -movementSpd * Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.DownArrow)) {
+            move(Direction.DOWN);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            this.transform.position += new Vector3(movementSpd * Time.deltaTime, 0, 0);
-            this.spriteRenderer.flipX = true;
+        if (Input.GetKey(KeyCode.RightArrow)) {
+            move(Direction.RIGHT);
+        }
+    }
+
+    void move (Direction direction) {
+        switch (direction) {
+            case Direction.UP:
+                if (verticalSpd < 0f) {
+                    verticalSpd = minSpd;
+                } else if (verticalSpd < maxSpd) {
+                    verticalSpd += acceleration;
+                }
+                this.transform.Translate(0, verticalSpd * Time.deltaTime, 0);
+                break;
+            case Direction.LEFT:
+                spriteRenderer.flipX = false;
+
+                if (horizontalSpd > 0f) {
+                    horizontalSpd = -minSpd;
+                } else if (horizontalSpd > -maxSpd) {
+                    horizontalSpd -= acceleration;
+                }
+                this.transform.Translate(horizontalSpd * Time.deltaTime, 0, 0);
+                break;
+            case Direction.DOWN:
+                if (verticalSpd > 0f) {
+                    verticalSpd = -minSpd;
+                } else if (verticalSpd > -maxSpd) {
+                    verticalSpd -= acceleration;
+                }
+                this.transform.Translate(0, verticalSpd * Time.deltaTime, 0);
+                break;
+            case Direction.RIGHT:
+                spriteRenderer.flipX = true;
+
+                if (horizontalSpd < 0f) {
+                    horizontalSpd = minSpd;
+                } else if (horizontalSpd < maxSpd) {
+                    horizontalSpd += acceleration;
+                }
+                this.transform.Translate(horizontalSpd * Time.deltaTime, 0, 0);
+                break;
         }
     }
 }
