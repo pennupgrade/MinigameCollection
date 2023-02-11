@@ -21,6 +21,10 @@ public class ShootingProjectile : MonoBehaviour
 
     void DestroyProjectile()
     {
-        Destroy(gameObject);
+        if (gameObject != null)
+        {
+            // Do something  
+            Destroy(gameObject);
+        }
     }
 }
