@@ -21,9 +21,10 @@ public class ShootingProjectile : MonoBehaviour
         {
             // do damage here, for example:
             collision.gameObject.GetComponent<EnemyHP>().TakeDamage(1);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        
 
     }
 

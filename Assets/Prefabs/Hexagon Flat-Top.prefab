@@ -133,7 +133,7 @@ MonoBehaviour:
   shotPoint: {fileID: 4148281823537891637}
   gun: {fileID: 4148281824696665498}
   projectile: {fileID: 4411794742963815305, guid: 261fd6b6a71fbb04c8da9fee67bf3333, type: 3}
-  attackRange: 8
+  attackRange: 6
   startTimeBtwnShots: 0.5
 --- !u!58 &4148281824634357879
 CircleCollider2D:
@@ -150,7 +150,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.8
 --- !u!50 &4148281824634357878
 Rigidbody2D:
   serializedVersion: 4
