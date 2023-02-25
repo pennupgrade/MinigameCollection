@@ -32,30 +32,30 @@ namespace UnityEngine
             {
                 Wilt();
             }
-            GrowPlant();
+            //GrowPlant();
         }
 
-        void GrowPlant()
-        {
-            if (state == GrowthState.Seed)
-            {
-                lifeTime += Time.deltaTime;
-                if (lifeTime >= saplingAge)
-                {
-                    state = GrowthState.Sapling;
-                    //animation 
-                }
-            }
-            else if (state == GrowthState.Sapling)
-            {
-                lifeTime += Time.deltaTime;
-                if (lifeTime >= plantAge)
-                {
-                    state = GrowthState.Plant;
-                    //animation
-                }
-            }
-        }
+        //void GrowPlant()
+        //{
+        //    if (state == GrowthState.Seed)
+        //    {
+        //        lifeTime += Time.deltaTime;
+        //        if (lifeTime >= saplingAge)
+        //        {
+        //            state = GrowthState.Sapling;
+        //            //animation 
+        //        }
+        //    }
+        //    else if (state == GrowthState.Sapling)
+        //    {
+        //        lifeTime += Time.deltaTime;
+        //        if (lifeTime >= plantAge)
+        //        {
+        //            state = GrowthState.Plant;
+        //            //animation
+        //        }
+        //    }
+        //}
 
         void AreaDamageEnemies(Vector3 location, float radius, float damage)
         {

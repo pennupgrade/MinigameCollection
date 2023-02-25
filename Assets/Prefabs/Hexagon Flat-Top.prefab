@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 7391445174671019376}
   - component: {fileID: 7391445174671019391}
   - component: {fileID: 3431668972313949947}
+  - component: {fileID: 2125952382978710795}
   m_Layer: 0
   m_Name: Hexagon Flat-Top
   m_TagString: Untagged
@@ -162,5 +163,26 @@ MonoBehaviour:
   shotPoint: {fileID: 4797087748256418705}
   gun: {fileID: 6554480076353004077}
   projectile: {fileID: 4411794742963815305, guid: 261fd6b6a71fbb04c8da9fee67bf3333, type: 3}
+<<<<<<< Updated upstream
   attackRange: 8
   startTimeBtwnShots: 0.5
+=======
+  attackRange: 4
+  startTimeBtwnShots: 0.5
+--- !u!58 &2125952382978710795
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7391445174671019390}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.56
+>>>>>>> Stashed changes

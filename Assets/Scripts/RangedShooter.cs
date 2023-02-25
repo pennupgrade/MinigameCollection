@@ -15,23 +15,46 @@ public class RangedShooter : MonoBehaviour
     public float startTimeBtwnShots;
     private float timeBtwnShots;
 
+    private List<Transform> enemyList = new List<Transform>();
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Entered trigger");
+        if (other.gameObject.tag == "Enemy")
+        {
+            enemyList.Add(other.gameObject.transform);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Vector3 difference = enemy.position - gun.transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        gun.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
-
-        if (Vector2.Distance(transform.position, enemy.position) <= attackRange)
+        if (!(enemy == null && enemyList.Count == 0))
         {
-            if (timeBtwnShots <= 0)
+            Debug.Log("Passed first statement");
+            if (enemy == null)
             {
-                Instantiate(projectile, shotPoint.position, shotPoint.transform.rotation);
-                timeBtwnShots = startTimeBtwnShots;
+                Debug.Log("Reassigned enemy:");
+                Debug.Log(enemyList.ToString());
+                enemy = enemyList[0];
+                enemyList.RemoveAt(0);
             }
-            else
+
+            Vector3 difference = enemy.position - gun.transform.position;
+            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            gun.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+
+            if (Vector2.Distance(transform.position, enemy.position) <= attackRange)
             {
-                timeBtwnShots -= Time.deltaTime;
+                if (timeBtwnShots <= 0)
+                {
+                    Instantiate(projectile, shotPoint.position, shotPoint.transform.rotation);
+                    timeBtwnShots = startTimeBtwnShots;
+                }
+                else
+                {
+                    timeBtwnShots -= Time.deltaTime;
+                }
             }
         }
     }
