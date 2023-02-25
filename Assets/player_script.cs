@@ -64,23 +64,24 @@ public class player_script : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W)) 
             {
-                holdTime += Time.deltaTime;
-                var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
-                vcopy.y = addV; 
+                //holdTime += Time.deltaTime;
+                //var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
+                vcopy.y = 6f * Time.deltaTime;
             }
-
+            /*
             if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
             {
-                vcopy.y -= down;
+                vcopy.y -= 0.1f * Time.deltaTime;
                 //holdTime = 0;
-            }
-
-            if (!Input.GetKey(KeyCode.W))
+                
+            }*/
+            else
             {
-                holdTime = 0;
                 vcopy.y -= gravity * Time.deltaTime;
                 saveY = vcopy.y;
+
             }
+
 
         }
         else
@@ -88,9 +89,6 @@ public class player_script : MonoBehaviour
             vcopy.y -= gravity * Time.deltaTime;
             saveY = vcopy.y;
         }
-
-        
-
 
         velocity = vcopy;
 
