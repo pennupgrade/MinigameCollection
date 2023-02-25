@@ -5,20 +5,33 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
+    Rigidbody2D body;
+    public Enemy enemy;
+    Animator animator;
+
     private float speed = 5f;
+    private int damage = 5;
+
 
     void Start()
     {
-        
+        body = this.gameObject.GetComponent<Rigidbody2D>();
+        Destroy(this.gameObject, 3f);
+        Physics2D.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
 
-    private void Update()
+    void Update()
     {
         transform.position += transform.right * Time.deltaTime * speed;
     }
 
-    private void onCollision2D(onCollision2D)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if(collision.gameObject.CompareTag("Enemy")) 
+        {
+            collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+            Destroy(this.gameObject);
+        }
     }
+
 }
