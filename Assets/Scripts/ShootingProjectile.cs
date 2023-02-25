@@ -13,6 +13,20 @@ public class ShootingProjectile : MonoBehaviour
         Invoke("DestroyProjectile", lifeTime);
     }
 
+    //Collision with enemy
+    private void OnCollisionEnter2D (Collision2D collision)
+    {
+        //Enemies to take damage
+        if (collision.transform.tag == "Enemy")
+        {
+            // do damage here, for example:
+            collision.gameObject.GetComponent<EnemyHP>().TakeDamage(1);
+        }
+
+        Destroy(gameObject);
+
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

@@ -62,7 +62,7 @@ namespace UnityEngine
             Collider[] objectsInRange = Physics.OverlapSphere(location, radius);
             foreach (Collider col in objectsInRange)
             {
-                EnemyMovement enemy = col.GetComponent<EnemyMovement>(); //need enemies to have an Enemy script attached
+                EnemyHP enemy = col.GetComponent<EnemyHP>(); //need enemies to have an Enemy script attached
                 if (enemy != null)
                 {
                     // linear falloff of effect
@@ -70,7 +70,7 @@ namespace UnityEngine
                     float effect = 1 - (proximity / radius);
 
 
-                    enemy.ApplyDamage(damage * effect);
+                    enemy.TakeDamage(damage * effect);
                 }
             }
 

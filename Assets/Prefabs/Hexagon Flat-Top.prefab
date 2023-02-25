@@ -161,6 +161,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   shotPoint: {fileID: 4797087748256418705}
   gun: {fileID: 6554480076353004077}
-  projectile: {fileID: 0}
-  attackRange: 0
-  startTimeBtwnShots: 0
+  projectile: {fileID: 4411794742963815305, guid: 261fd6b6a71fbb04c8da9fee67bf3333, type: 3}
+  attackRange: 8
+  startTimeBtwnShots: 0.5

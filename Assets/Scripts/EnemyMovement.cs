@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private float hp = 100f;
+    
     private Vector3 mvtVector;
 
     // controls how fast the enemy moves
@@ -59,8 +59,4 @@ public class EnemyMovement : MonoBehaviour
                                                   mvtVector.z)) * mvtSpd;
     }
 
-    public void ApplyDamage(float dmg)
-    {
-        hp -= dmg;
-    }
 }
