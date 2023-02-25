@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5deb27e757527c4c963ef24b8e4baf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 6838837097636387779, guid: c7ddbf70cd4d14cf0878eddb91c66cfb, type: 3}
   shotPoint: {fileID: 4797087748256418705}
   gun: {fileID: 6554480076353004077}
   projectile: {fileID: 4411794742963815305, guid: 261fd6b6a71fbb04c8da9fee67bf3333, type: 3}
