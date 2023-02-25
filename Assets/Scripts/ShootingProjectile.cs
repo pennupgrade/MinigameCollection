@@ -14,7 +14,7 @@ public class ShootingProjectile : MonoBehaviour
     }
 
     //Collision with enemy
-    private void OnCollisionEnter2D (Collision2D collision)
+    private void OnTriggerEnter2D (Collider2D collision)
     {
         //Enemies to take damage
         if (collision.transform.tag == "Enemy")
