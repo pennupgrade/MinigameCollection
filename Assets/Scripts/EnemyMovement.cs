@@ -4,47 +4,59 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private float mvtSpd = 1f;
     private float hp = 100f;
+    private Vector3 mvtVector;
+
+    // controls how fast the enemy moves
+    private float mvtSpd = 0.5f;
+
+    // controls number of frames between enemy change in direction
+    private int randomInterval = 120;
+
+    // enemy changes direction by [-degreeOffsetBound, degreeOffsetBound]
+    private float degreeOffsetBound = 45f;
 
     private int timer = 0;
 
-    private int mvtInterval = 10;
-
-    private float targetRadius = 2f;
+    // target position vector
     private Vector3 target;
 
     void Start() {
         target = new Vector3(0, 0, 0);
+        mvtVector = VectorToTarget() * mvtSpd;
     }
 
-    // Update is called once per frame
     void Update() {
-        if (timer % mvtInterval == 0) {
-            randomizeTarget();
+        if (timer % randomInterval == 0) {
+            RandomizeMovement();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, 
-                                                 target, 
-                                                 Time.deltaTime * mvtSpd);
+        transform.Translate(mvtVector * Time.deltaTime);
+
         timer++;
     }
+
+    private Vector3 VectorToTarget() {
+        return Vector3.Normalize(new Vector3(target.x - transform.position.x,
+                                             target.y - transform.position.y,
+                                             target.z - transform.position.z));
+    }
     
-    public void randomizeTarget() {
-        float x = targetRadius - Random.Range(0f, targetRadius);
-        float y = targetRadius - x;
+    public void RandomizeMovement() {
+        float degreeOffset = Random.Range(-degreeOffsetBound, degreeOffsetBound);
+        float radianOffset = degreeOffset * Mathf.PI / 180f;
 
-        if (Random.Range(0, 2) == 0) {
-            target.x = Mathf.Sqrt(x);
-        } else {
-            target.x = -Mathf.Sqrt(x);
-        }
+        Vector3 vectorToTarget = VectorToTarget();
+        
+        float newMvtVectorX = vectorToTarget.x * Mathf.Cos(radianOffset) -
+                              vectorToTarget.y * Mathf.Sin(radianOffset);
 
-        if (Random.Range(0, 2) == 0) {
-            target.y = Mathf.Sqrt(y);
-        } else {
-            target.y = -Mathf.Sqrt(y);
-        }
+        float newMvtVectorY = vectorToTarget.x * Mathf.Sin(radianOffset) +
+                              vectorToTarget.y * Mathf.Cos(radianOffset);
+        
+        mvtVector = Vector3.Normalize(new Vector3(newMvtVectorX, 
+                                                  newMvtVectorY, 
+                                                  mvtVector.z)) * mvtSpd;
     }
 
     public void ApplyDamage(float dmg)
