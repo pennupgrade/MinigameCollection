@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class WaterStorageBehavior : MonoBehaviour
 {
-
-    private int remainingWater;
+    private int remainingWater = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        remainingWater = 100;
+    
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class WaterStorageBehavior : MonoBehaviour
         
     }
 
-    void collectWater()
+    public void collectWater()
     {
         if (remainingWater > 0) {
             Debug.Log("water left in tank: " + remainingWater + "%");
