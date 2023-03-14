@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class WaveTimer : MonoBehaviour
 {
-    private Text timerText;
-    private float time = 30f;
-    private bool isRunning = true;
+    Text timerText;
+    GameObject waveCounter;
 
+    float time = 30f;
+    bool isRunning = true;
+
+    // Start is called before the first frame update
     void Start()
     {
         timerText = gameObject.GetComponent<Text>();
+        waveCounter = GameObject.Find("Wave Counter");
     }
 
     // Update is called once per frame
@@ -24,11 +28,13 @@ public class WaveTimer : MonoBehaviour
             if (time <= 0) {
                 timerText.text = "";
                 isRunning = false;
+
+                waveCounter.GetComponent<WaveCounter>().Increment();
             }
         }
     }
 
-    void Begin()
+    public void Begin()
     {
         Reset();
         isRunning = true;
