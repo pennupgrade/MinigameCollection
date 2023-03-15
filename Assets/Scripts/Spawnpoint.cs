@@ -6,16 +6,27 @@ public class Spawnpoint : MonoBehaviour
 {
     public GameObject enemy;
 
-    private int timer = 0;
-    private int spawnInterval = 1080;
+    int timer = 0;
+    int spawnInterval = 1080;
+    int numToSpawn = 0;
+
+    bool isSpawning = false;
 
     void Update()
     {
-        if (timer % spawnInterval == 0) {
-            Spawn();
+        if (isSpawning && numToSpawn > 0) {
+            if (timer % spawnInterval == 0) {
+                numToSpawn--;
+                Spawn();
+            }
+            timer++;
         }
+    }
 
-        timer++;
+    public void Begin(int n) {
+        numToSpawn = n;
+        timer = 0;
+        isSpawning = true;
     }
 
     void Spawn() {

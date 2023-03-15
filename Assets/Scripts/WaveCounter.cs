@@ -20,8 +20,9 @@ public class WaveCounter : MonoBehaviour
         counterText.text = "Wave " + curWave;
     }
 
-    public void Increment()
+    public int Increment()
     {
         curWave++;
+        return curWave;
     }
 }

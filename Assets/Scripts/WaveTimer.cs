@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class WaveTimer : MonoBehaviour
 {
     Text timerText;
-    GameObject waveCounter;
+    WaveCounter waveCounter;
+    GameObject[] respawns;
 
     float time = 30f;
     bool isRunning = true;
@@ -15,7 +16,8 @@ public class WaveTimer : MonoBehaviour
     void Start()
     {
         timerText = gameObject.GetComponent<Text>();
-        waveCounter = GameObject.Find("Wave Counter");
+        waveCounter = GameObject.Find("Wave Counter").GetComponent<WaveCounter>();
+        respawns = GameObject.FindGameObjectsWithTag("Respawn");
     }
 
     // Update is called once per frame
@@ -26,22 +28,29 @@ public class WaveTimer : MonoBehaviour
             timerText.text = "Wave begins in " + Mathf.Ceil(time) + "...";
             
             if (time <= 0) {
-                timerText.text = "";
-                isRunning = false;
-
-                waveCounter.GetComponent<WaveCounter>().Increment();
+                End();
             }
+
+        } else if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0) {
+            Begin();
         }
     }
 
     public void Begin()
     {
-        Reset();
+        time = 30f;
         isRunning = true;
     }
 
-    void Reset()
+    void End()
     {
-        time = 30f;
+        timerText.text = "";
+        isRunning = false;
+
+        int curWave = waveCounter.Increment();
+
+        foreach (GameObject respawn in respawns) {
+            respawn.GetComponent<Spawnpoint>().Begin(Random.Range(1, 1 + curWave));
+        }
     }
 }
