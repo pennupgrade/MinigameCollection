@@ -19,7 +19,6 @@ public class RangedShooter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entered trigger");
         if (other.gameObject.tag == "Enemy")
         {
             enemyList.Add(other.gameObject.transform);
@@ -31,10 +30,8 @@ public class RangedShooter : MonoBehaviour
     {
         if (!(enemy == null && enemyList.Count == 0))
         {
-            Debug.Log("Passed first statement");
             if (enemy == null)
             {
-                Debug.Log("Reassigned enemy:");
                 Debug.Log(enemyList.ToString());
                 enemy = enemyList[0];
                 enemyList.RemoveAt(0);

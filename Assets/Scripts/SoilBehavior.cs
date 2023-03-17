@@ -6,7 +6,10 @@ public class SoilBehavior : MonoBehaviour
 {
     bool seeded = false;
     bool watered = false;
-    bool planted = false;
+
+    GameObject curPlant = null;
+
+    public GameObject longRangedPlant;
 
     // Start is called before the first frame update
     void Start()
@@ -17,16 +20,16 @@ public class SoilBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (seeded && watered && !planted) {
+        if (seeded && watered && curPlant == null) {
             seeded = false;
             watered = false;
-            planted = true;
+            Plant();
         }
     }
 
     public int Seed(int seeds) 
     {
-        if (seeded || seeds <= 0) {
+        if (seeded || seeds <= 0 || curPlant != null) {
             return seeds;
         }
 
@@ -36,7 +39,7 @@ public class SoilBehavior : MonoBehaviour
 
     public int Water(int water) 
     {
-        if (watered || water <= 0) {
+        if (watered || water <= 0 || curPlant != null) {
             return water;
         }
 
@@ -52,5 +55,10 @@ public class SoilBehavior : MonoBehaviour
     public bool IsWatered() 
     {
         return watered;
+    }
+    
+    void Plant()
+    {
+        curPlant = Instantiate(longRangedPlant, transform.position, Quaternion.identity);
     }
 }
