@@ -106,6 +106,7 @@ MonoBehaviour:
   root1: {fileID: 21300000, guid: f8d52fad0b32d3f4cb769c7c7f2877b1, type: 3}
   root2: {fileID: 21300000, guid: f8d52fad0b32d3f4cb769c7c7f2877b1, type: 3}
   root3: {fileID: 21300000, guid: f8d52fad0b32d3f4cb769c7c7f2877b1, type: 3}
+  speedFactor: 1
 --- !u!61 &-2793158281987299711
 BoxCollider2D:
   m_ObjectHideFlags: 0

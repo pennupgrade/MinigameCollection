@@ -18,6 +18,7 @@ public class tree_script : MonoBehaviour
     public Sprite root1;
     public Sprite root2;
     public Sprite root3;
+    public float speedFactor;
 
     private int ranB = 0;
     private int ranR = 0;
@@ -35,7 +36,7 @@ public class tree_script : MonoBehaviour
 
         var pcopy = transform.position;
 
-        pcopy.x -= Manager.velocityX * Time.deltaTime;
+        pcopy.x -= Manager.velocityX * speedFactor * Time.deltaTime;
 
         transform.position = pcopy;
 

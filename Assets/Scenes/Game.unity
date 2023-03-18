@@ -847,9 +847,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248651cfca1b3154c95d6a9d289f7786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
-  yPos: -3
-  yOffset: 1.1
+  obstacle1: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
+  obstacle2: {fileID: 124075836734402174, guid: 4af446029d2e66e4b90a23a36a19e33e, type: 3}
   spawnLow: 1
   spawnHigh: 6
 --- !u!4 &657806143
@@ -897,9 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248651cfca1b3154c95d6a9d289f7786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
-  yPos: 4.5
-  yOffset: 1.1
+  obstacle1: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
+  obstacle2: {fileID: 124075836734402174, guid: 4af446029d2e66e4b90a23a36a19e33e, type: 3}
   spawnLow: 2
   spawnHigh: 10
 --- !u!114 &657806146
@@ -914,9 +912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248651cfca1b3154c95d6a9d289f7786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
-  yPos: 0
-  yOffset: 1.1
+  obstacle1: {fileID: 124075836734402174, guid: a668274dac408494aa96b0d836f6fe6a, type: 3}
+  obstacle2: {fileID: 124075836734402174, guid: 4af446029d2e66e4b90a23a36a19e33e, type: 3}
   spawnLow: 10
   spawnHigh: 15
 --- !u!1 &704799784

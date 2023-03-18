@@ -6,18 +6,25 @@ using UnityEngine;
 public class tree_spawn : MonoBehaviour
 {
 
-    public GameObject obstacle;
+    public GameObject obstacle1;
+    public GameObject obstacle2;
+
     private float timer;
 
-    public float yPos;
-
-    public float yOffset;
+    private float yPos = 4.2f;
+    private float range = 1.6f;
 
     public float spawnLow, spawnHigh;
+
+    private Boolean upBranch = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(UnityEngine.Random.Range(-1,1) < 0)
+        {
+            upBranch = true;
+        }
         resetT();
     }
 
@@ -29,16 +36,29 @@ public class tree_spawn : MonoBehaviour
 
         if (timer > spawnT)
         {
-            resetT();
             timer = 0;
-            var s = Instantiate(obstacle);
-            s.transform.position = new Vector3(11, yPos + yOffset * UnityEngine.Random.Range(-1, 1), 0);
 
+            var m = obstacle1;
+            yPos = 2.2f;
+
+            if (upBranch)
+            {
+                m = obstacle2;
+                yPos = -2.2f;
+            }
+
+            var s = Instantiate(m);
+            s.transform.position = new Vector3(11, yPos + UnityEngine.Random.Range(-1 * range, range), 0);
+
+            Debug.Log(yPos);
+
+            resetT();
         }
     }
 
     public void resetT()
     {
         spawnT = UnityEngine.Random.Range(spawnLow, spawnHigh);
+        upBranch = !upBranch;
     }
 }
