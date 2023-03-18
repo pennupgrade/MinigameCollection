@@ -37,6 +37,13 @@ public class Enemy : MonoBehaviour
 
     private void Swarm() {
         body.velocity = new Vector2(0,0);
+        if (playerBody.transform.position.x < transform.position.x) 
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if (playerBody.transform.position.x > transform.position.x) 
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
         transform.position = Vector2.MoveTowards(transform.position, playerBody.transform.position, speed * Time.deltaTime);
         // body.velocity = Vector2.MoveTowards(body.velocity, playerBody.transform.position, speed * Time.deltaTime);
     }

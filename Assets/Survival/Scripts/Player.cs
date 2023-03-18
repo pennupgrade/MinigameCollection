@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public Projectile projectilePrefab;
     public Transform launchOffset;
 
-    private float moveSpeed = 20.0f;
+    private float moveSpeed = 15.0f;
     private Vector3 targetPos;
     public int healthPoint = 120;
 
@@ -45,6 +45,13 @@ public class Player : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
             vertical = Input.GetAxisRaw("Vertical"); // -1 is down
 
+            if (horizontal < 0) 
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            } else if (horizontal > 0) 
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
             //pauses animation if no inputs
             if (horizontal == 0 && vertical == 0)
             {

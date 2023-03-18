@@ -116,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74b20d463cba4dbcb822663c8e0157f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8253206722440294647, guid: aedeb1b015e8e483fb018d7af780a31a, type: 3}
   launchOffset: {fileID: 0}
+  healthPoint: 120
 --- !u!50 &5076555498994288927
 Rigidbody2D:
   serializedVersion: 4

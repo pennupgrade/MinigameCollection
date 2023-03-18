@@ -7,8 +7,8 @@ public class Projectile : MonoBehaviour
 
     Rigidbody2D body;
     public Enemy enemy;
-    Animator animator;
 
+    private bool flip = false;
     private float speed = 5f;
     private int damage = 5;
 
@@ -18,11 +18,16 @@ public class Projectile : MonoBehaviour
         body = this.gameObject.GetComponent<Rigidbody2D>();
         Destroy(this.gameObject, 3f);
         Physics2D.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        transform.Rotate(Vector3.forward * -90);
+        flip = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>().flipX;
+        if(flip) {
+            transform.Rotate(Vector3.forward * 180);
+        }
     }
 
     void Update()
     {
-        transform.position += transform.right * Time.deltaTime * speed;
+        transform.position += transform.up * Time.deltaTime * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
