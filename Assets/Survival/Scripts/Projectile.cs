@@ -36,6 +36,8 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             Destroy(this.gameObject);
+        } else if(collision.gameObject.CompareTag("Projectile")) {
+            Physics2D.IgnoreCollision(GameObject.FindWithTag("Projectile").GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }
     }
 
