@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour
     Rigidbody2D body;
     Animator animator;
     GameObject playerBody;
+    public XP xp;
 
-    public int healthPoint = 10;
 
-    public int damage = 10;
+    public float healthPoint = 1f;
+
+    public float damage = 0.05f;
 
     public int speed = 3;
 
@@ -19,18 +21,17 @@ public class Enemy : MonoBehaviour
 
     public Player player;
 
-    // Start is called before the first frame update
     void Start()
     {
         body = this.gameObject.GetComponent<Rigidbody2D>();
         playerBody = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Swarm();
         if (healthPoint <= 0) {
+            Instantiate(xp, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
     }
@@ -67,7 +68,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDamage(int damage) {
+    public void takeDamage(float damage) {
         healthPoint -= damage;
+        Debug.Log(healthPoint);
     }
 }

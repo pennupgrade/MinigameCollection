@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a150d2d93834f50b2eefb2bcb37767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 10
-  damage: 10
+  xp: {fileID: -4643174102280625901, guid: 136ed23b12219472c936fc2d244d85d1, type: 3}
+  healthPoint: 1
+  damage: 0.05
   speed: 3
   attackSpeed: 1
   attackTime: 1

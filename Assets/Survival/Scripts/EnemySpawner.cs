@@ -29,25 +29,21 @@ public class EnemySpawner : MonoBehaviour
         if (upOrDown < 0.5f && leftOrRight < 0.5f) 
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x + Random.Range(-10f, -5f), transform.position.y + Random.Range(-10f, -5f), 0), Quaternion.identity);
-            Debug.Log(newEnemy.transform.position);
         }
 
         if (upOrDown < 0.5f && leftOrRight >= 0.5f) 
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x + Random.Range(-10f, -5f), transform.position.y + Random.Range(5f, 10f), 0), Quaternion.identity);
-            Debug.Log(newEnemy.transform.position);
         }
 
         if (upOrDown >= 0.5f && leftOrRight < 0.5f) 
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x + Random.Range(5f, 10f), transform.position.y + Random.Range(-10f, -5f), 0), Quaternion.identity);
-            Debug.Log(newEnemy.transform.position);
         }
 
         if (upOrDown >= 0.5f && leftOrRight >= 0.5f) 
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x + Random.Range(5f, 10f), transform.position.y + Random.Range(5f, 10f), 0), Quaternion.identity);
-            Debug.Log(newEnemy.transform.position);
         }
         StartCoroutine(spawnEnemy(interval, enemy));
     }

@@ -6,13 +6,14 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D body;
     Animator animator;
+    public HealthBar healthBar;
 
     public Projectile projectilePrefab;
     public Transform launchOffset;
 
     private float moveSpeed = 15.0f;
+    private float xp = 0;
     private Vector3 targetPos;
-    public int healthPoint = 120;
 
     private float defaultReloadTime = 1;
     private float reloadTime = 1;
@@ -81,15 +82,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int getHealth() {
-        return healthPoint;
+    public float getHealth() {
+        return Health.totalHealth;
     }
 
-    public void takeDamage(int damage) {
-        Debug.Log(healthPoint);
-        healthPoint -= damage;
-        if (healthPoint <= 0) {
+    public void takeDamage(float damage) {
+        healthBar.Damage(damage);
+        if (Health.totalHealth <= 0) {
             isAlive = false;
         }
+    }
+    
+    public void increaseXP(float xpGain) {
+        xp += xpGain;
+        Debug.Log(xp);
     }
 }

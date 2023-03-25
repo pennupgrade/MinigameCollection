@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 
     private bool flip = false;
     private float speed = 5f;
-    private int damage = 5;
+    private float damage = 0.5f;
 
 
     void Start()
@@ -36,8 +36,6 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
             Destroy(this.gameObject);
-        } else if(collision.gameObject.CompareTag("Projectile")) {
-            Physics2D.IgnoreCollision(GameObject.FindWithTag("Projectile").GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         }
     }
 
