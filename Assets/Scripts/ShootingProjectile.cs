@@ -23,9 +23,6 @@ public class ShootingProjectile : MonoBehaviour
             collision.gameObject.GetComponent<EnemyHP>().TakeDamage(1);
             Destroy(gameObject);
         }
-
-        
-
     }
 
     // Update is called once per frame

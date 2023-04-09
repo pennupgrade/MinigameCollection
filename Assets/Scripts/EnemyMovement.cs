@@ -59,4 +59,20 @@ public class EnemyMovement : MonoBehaviour
                                                   mvtVector.z)) * mvtSpd;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "PlantHitbox")
+        {
+            mvtVector = Vector3.zero;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "PlantHitbox")
+        {
+            mvtVector = VectorToTarget() * mvtSpd;
+        }
+    }
+
 }

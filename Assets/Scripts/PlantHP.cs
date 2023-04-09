@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EnemyHP : MonoBehaviour
+public class PlantHP : MonoBehaviour
 {
-    public static event Action<EnemyHP> OnEnemyKilled;
-    [SerializeField] float health, maxHealth = 1000f;
+    public static event Action<PlantHP> OnPlantKilled;
+    [SerializeField] float health, maxHealth = 80f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class EnemyHP : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            OnEnemyKilled?.Invoke(this);
+            OnPlantKilled?.Invoke(this);
         }
     }
 
