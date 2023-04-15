@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8254597873860643251}
   - component: {fileID: 8254597873860643260}
   - component: {fileID: 8254597873860643261}
+  - component: {fileID: -1156047371388636222}
   m_Layer: 0
   m_Name: River
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +113,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.1, y: 0.1}
-  m_Size: {x: 3, y: 4.9999995}
+  m_Size: {x: 2, y: 4}
   m_Direction: 0
 --- !u!114 &8254597873860643261
 MonoBehaviour:
@@ -126,3 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5927624b55ea04185a494955f3c4305a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1156047371388636222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254597873860643262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a196bb907102704e908057d9ff7e361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
