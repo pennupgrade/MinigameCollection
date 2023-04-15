@@ -70,6 +70,17 @@ public class Enemy : MonoBehaviour
 
     public void takeDamage(float damage) {
         healthPoint -= damage;
-        Debug.Log(healthPoint);
+    }
+
+    public void flashRed() {
+        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 1);
+        StartCoroutine(waitColor(0.2f));
+    }
+    
+    //resets color
+    IEnumerator waitColor(float time)
+    {
+        yield return new WaitForSeconds(time);
+        this.transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
     }
 }

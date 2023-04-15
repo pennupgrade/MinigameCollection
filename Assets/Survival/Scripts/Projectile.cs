@@ -30,11 +30,13 @@ public class Projectile : MonoBehaviour
         transform.position += transform.up * Time.deltaTime * speed;
     }
 
+    //enemy collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy")) 
         {
             collision.gameObject.GetComponent<Enemy>().takeDamage(damage);
+            collision.gameObject.GetComponent<Enemy>().flashRed();
             Destroy(this.gameObject);
         }
     }

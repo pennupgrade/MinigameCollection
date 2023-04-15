@@ -21,6 +21,7 @@ public class XP : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.CompareTag("Player")) {
             collision.gameObject.GetComponent<Player>().increaseXP(xp);
+            collision.gameObject.GetComponent<Player>().heal();
             Destroy(this.gameObject);
         }
     }

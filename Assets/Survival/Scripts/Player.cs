@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D body;
     Animator animator;
+    GameObject gameover;
     public HealthBar healthBar;
 
     public Projectile projectilePrefab;
@@ -27,6 +28,9 @@ public class Player : MonoBehaviour
     {
         body = this.gameObject.GetComponent<Rigidbody2D>();
         animator = this.gameObject.GetComponent<Animator>();
+        gameover = GameObject.Find("GameOverUI");
+        gameover.SetActive(false);
+        Health.totalHealth = 1f;
     }
 
     void Update()
@@ -37,6 +41,8 @@ public class Player : MonoBehaviour
             if (reloadTime <= 0) {
                 reloadTime = defaultReloadTime;
                 Instantiate(projectilePrefab, launchOffset.position, transform.rotation);
+                Instantiate(projectilePrefab, launchOffset.position, Quaternion.Euler(Vector3.forward * 45));
+                Instantiate(projectilePrefab, launchOffset.position, Quaternion.Euler(Vector3.forward * -45));
             } else {
                 reloadTime -= Time.deltaTime;
             }
@@ -60,6 +66,8 @@ public class Player : MonoBehaviour
             } else {
                 animator.enabled = true;
             }
+        } else {
+            endGame();
         }
 
 
@@ -96,5 +104,17 @@ public class Player : MonoBehaviour
     public void increaseXP(float xpGain) {
         xp += xpGain;
         Debug.Log(xp);
+    }
+
+    public void endGame() {
+        Timer timer = GameObject.Find("TimerUI").GetComponent<Timer>();
+        timer.endTimer();
+        gameover.SetActive(true);
+    }
+
+    public void heal() {
+        if(Health.totalHealth < 1f) {
+            Health.totalHealth += 0.01f;
+        }
     }
 }

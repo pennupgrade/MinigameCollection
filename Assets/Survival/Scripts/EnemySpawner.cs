@@ -45,12 +45,16 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject newEnemy = Instantiate(enemy, new Vector3(transform.position.x + Random.Range(5f, 10f), transform.position.y + Random.Range(5f, 10f), 0), Quaternion.identity);
         }
+
+        if(interval > 1f) {
+            interval -= 0.1f;
+        }
+
         StartCoroutine(spawnEnemy(interval, enemy));
     }
 
     void Update()
     {
         transform.position = new Vector3(trackingTarget.position.x, trackingTarget.position.y, transform.position.z);
-
     }
 }
