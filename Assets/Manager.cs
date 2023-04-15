@@ -44,7 +44,7 @@ public class Manager : MonoBehaviour
             scoreT.text = "" + (int)(score * 10);
             //velocityX += Time.deltaTime * increaseSpeed;
 
-            velocityX = increaseSpeed * Mathf.Log(1 + score, logScale);
+            velocityX = increaseSpeed * Mathf.Log(1 + score, logScale) / 2;
         }
         else
         {

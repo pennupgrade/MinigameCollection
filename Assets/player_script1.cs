@@ -47,9 +47,6 @@ public class player_script1 : MonoBehaviour
             clamp();
 
     }
-
-    float saveY;
-
     public float timeToMaxVelocity;
 
     public float down;
@@ -66,37 +63,20 @@ public class player_script1 : MonoBehaviour
             {
                 //holdTime += Time.deltaTime;
                 //var addV = Interpolation.smooth.Apply(saveY, flyFactor * gravity, Math.Min(1, holdTime / timeToMaxVelocity));
-                vcopy.y = 6f * Time.deltaTime;
+                vcopy.y = 7f * Time.deltaTime;
             }
-            /*
-            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                vcopy.y -= 0.1f * Time.deltaTime;
-                //holdTime = 0;
-                
-            }*/
             else
             {
                 vcopy.y -= gravity * Time.deltaTime;
-                saveY = vcopy.y;
-
             }
-
-
         }
         else
         {
             vcopy.y -= gravity * Time.deltaTime;
-            saveY = vcopy.y;
         }
 
         velocity = vcopy;
-
-        var copy = transform.position;
-
-        copy = copy + velocity;
-
-        transform.position = copy;
+        transform.position = transform.position + velocity;
     }
 
     void clamp()
