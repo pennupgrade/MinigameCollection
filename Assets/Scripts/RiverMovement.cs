@@ -17,16 +17,23 @@ public class RiverMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private Animator RiverAnim;
+
     void Start()
     {
         horizontalSpd = minSpd;
         verticalSpd = minSpd;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        //This gets the Animator, which should be attached to the GameObject you are intending to animate.
+        RiverAnim = gameObject.GetComponent<Animator>();
+        // Brook is not moving
+        RiverAnim.SetBool("Move", false);
     }
 
     void Update()
     {
+        RiverAnim.SetBool("Move", false);
         if (Input.GetKey(KeyCode.UpArrow)) {
             move(Direction.UP);
         }
@@ -42,6 +49,7 @@ public class RiverMovement : MonoBehaviour
     }
 
     void move (Direction direction) {
+        RiverAnim.SetBool("Move", true);
         switch (direction) {
             case Direction.UP:
                 if (verticalSpd < 0f) {

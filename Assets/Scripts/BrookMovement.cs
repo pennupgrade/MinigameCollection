@@ -17,16 +17,23 @@ public class BrookMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private Animator BrookAnim;
+
     void Start()
     {
         horizontalSpd = minSpd;
         verticalSpd = minSpd;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        //This gets the Animator, which should be attached to the GameObject you are intending to animate.
+        BrookAnim = gameObject.GetComponent<Animator>();
+        // Brook is not moving
+        BrookAnim.SetBool("Move", false);
     }
 
     void Update()
     {
+        BrookAnim.SetBool("Move", false);
         if (Input.GetKey(KeyCode.W)) {
             move(Direction.UP);
         }
@@ -42,6 +49,7 @@ public class BrookMovement : MonoBehaviour
     }
 
     void move (Direction direction) {
+        BrookAnim.SetBool("Move", true);
         switch (direction) {
             case Direction.UP:
                 if (verticalSpd < 0f) {
