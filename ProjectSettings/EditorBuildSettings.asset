@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/TowerDefense/StartUI.unity
+    guid: 57b1c8f1d9b6e438585fb4d2b270aa82
+  - enabled: 1
+    path: Assets/TowerDefense/EndUI.unity
+    guid: 6251fe624a198476196e7d221eb0b166
+  - enabled: 1
+    path: Assets/TowerDefense/TestScene.unity
+    guid: 200271d23d1e34a49af710a163c4005e
   m_configObjects: {}
